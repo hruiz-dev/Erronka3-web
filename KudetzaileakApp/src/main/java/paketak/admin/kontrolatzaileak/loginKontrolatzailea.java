@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class MainView {
+public class loginKontrolatzailea {
 
     @FXML
     private TextField erabiltzaileaText;
@@ -12,10 +12,10 @@ public class MainView {
     private PasswordField pasahitzaText;
 
     public void hasiSaioa() {
-
-    }
-
-    public void pasahitzaHaztu() {
-
+        if (erabiltzaileaText.getText().equals("admin") && pasahitzaText.getText().equals("admin")) {
+            System.out.println("Saioa hasi da");
+        } else {
+            System.out.println("Erabiltzaile edo pasahitza okerra");
+        }
     }
 }
