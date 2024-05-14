@@ -28,6 +28,7 @@ public class Main extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxml));
             stage.getScene().setRoot(root);
+            stage.sizeToScene();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

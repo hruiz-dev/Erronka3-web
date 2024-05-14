@@ -11,3 +11,10 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
+
+.datuPanela {
+    -fx-border: 2px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-border-style: solid;
+    -fx-border-radius: 5px;
+}
