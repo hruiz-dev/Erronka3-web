@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * Klase honek sesioarekin erlazionaturiko funtzioak gordetzen ditu
+ */
+class sesioa {
+    
+    public function __construct() {
+        session_start();
+    }
+
+    /**
+     * Funtzio honek sesioan gordetako banatailea itzultzen du
+     */
+    public function lortuBanatzailea() : banatzailea {
+        
+        return $_SESSION['banatzailea'];
+        
+    }
+
+    /**
+     * Metodo honek banatzailea gordetzen du sesioan
+     */
+    public function gordeBanatzailea(banatzailea $banatzailea) {
+        
+        $_SESSION['banatzailea'] = $banatzailea;
+        
+    }
+}
