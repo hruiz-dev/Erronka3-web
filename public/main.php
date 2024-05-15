@@ -2,10 +2,15 @@
 
 require_once "kontrolatzaileak/sesioa.php";
 require_once "modeloak/banatzailea.php";
-require_once "komponeteak/sidebar.php";
-require_once "komponeteak/paketea.php";
-require_once "kontrolatzaileak/mainKontrolatzailea.php";
+require_once "komponenteak/sidebar.php";
+require_once "komponenteak/paketea.php";
+// require_once "kontrolatzaileak/mainKontrolatzailea.php";
 
+$sesioa = new Sesioa();
+if ($sesioa->lortuBanatzailea() == null) {
+  header('Location: index.php');
+}
+  $banatzailea = $sesioa->lortuBanatzailea();
 
 ?>
 
@@ -25,23 +30,51 @@ require_once "kontrolatzaileak/mainKontrolatzailea.php";
       <div class="hasiera-cont">
         <div class="hasiera-cont-stats">
             <div class="hasiera-cont-stats-ind">
-              <div class="hasiera-cont-stats-ind-num"><i class="bi bi-box-seam" style="color:rgb(181, 153, 119)"></i> 25</div>
+              <div class="hasiera-cont-stats-ind-num" id="banatutako-paketeak"><i class="bi bi-box-seam" style="color:rgb(181, 153, 119)"></i> 25</div>
             </div>
             <div class="hasiera-cont-stats-ind">
-              <div class="hasiera-cont-stats-ind-num"><i class="bi bi-play-fill" style="color: rgb(130, 173, 113)"></i> 1</div>
+              <div class="hasiera-cont-stats-ind-num" id="banatzen-paketeak"><i class="bi bi-play-fill" style="color: rgb(130, 173, 113)"></i> 1</div>
             </div>
             <div class="hasiera-cont-stats-ind">
-              <div class="hasiera-cont-stats-ind-num"><i class="bi bi-exclamation-triangle" style="color: rgb(173, 113, 113)"></i> 3</div>
+              <div class="hasiera-cont-stats-ind-num" id="inzidentziak"><i class="bi bi-exclamation-triangle" style="color: rgb(173, 113, 113)"></i> 3</div>
             </div>
             <div class="hasiera-cont-stats-ind">
-              <div class="hasiera-cont-stats-ind-num"><i class="bi bi-clock-history" style="color:rgb(221, 211, 120)"></i> 8</div>
+              <div class="hasiera-cont-stats-ind-num" id="berandu-entregatutakoak"><i class="bi bi-clock-history" style="color:rgb(221, 211, 120)"></i> 8</div>
             </div>
         </div>
-        <div class="paketeak-cont">
+        <div class="paketeak-cont" >
           <h2>Paketeak</h2>
           <hr>
-          <?php echo $paketeakHtml; ?>
+          <div id="paketakCont">
+
+          </div>
         </div>
       </div>
 </body>
 </html>
+
+<script>
+  datuakKargatu();
+  setInterval(datuakKargatu, 10000);
+  function datuakKargatu(){
+
+                    const xhttppaketeak = new XMLHttpRequest();
+                    xhttppaketeak.onload = function() {
+                        document.getElementById("paketakCont").innerHTML =
+                        this.response;
+                    }
+                    xhttppaketeak.open("GET", "kontrolatzaileak/paketeakDinamikoki.php?paketeak=true");
+                    xhttppaketeak.send();
+
+                    const xhttpBanatzaileDatuak = new XMLHttpRequest();
+                    xhttpBanatzaileDatuak.onload = function() {
+                        const datuak = JSON.parse(this.response);
+                        document.getElementById("banatutako-paketeak").innerHTML = "<i class='bi bi-box-seam' style='color:rgb(181, 153, 119)'></i> " + datuak[0];
+                        document.getElementById("banatzen-paketeak").innerHTML = "<i class='bi bi-play-fill' style='color: rgb(130, 173, 113)'></i> " + datuak[1];
+                        document.getElementById("inzidentziak").innerHTML = "<i class='bi bi-exclamation-triangle' style='color: rgb(173, 113, 113)'></i> " + datuak[2];
+                        document.getElementById("berandu-entregatutakoak").innerHTML = "<i class='bi bi-clock-history' style='color:rgb(221, 211, 120)'></i> " + datuak[3];
+                    }
+                    xhttpBanatzaileDatuak.open("GET", "kontrolatzaileak/paketeakDinamikoki.php?datuak=true");
+                    xhttpBanatzaileDatuak.send();
+                }
+</script>

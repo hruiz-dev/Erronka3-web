@@ -1,5 +1,5 @@
 <?php
-require_once "modeloak/paketea.php";
+require_once __DIR__ . "/../modeloak/paketea.php";
 function sortuPaketeaHtml(Paketea $paketea) {
     return <<<HTML
     <div class="paketeak-ind">

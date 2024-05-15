@@ -1,6 +1,16 @@
 <?php
 
 class Banatzailea {
+
+    function __construct($banatzaileaSql) {
+        $this->id = $banatzaileaSql['id'];
+        $this->izena = $banatzaileaSql['izena'];
+        $this->abizena = $banatzaileaSql['abizena'];
+        $this->erabiltzailea = $banatzaileaSql['erabiltzailea'];
+        $this->pasahitza = $banatzaileaSql['pasahitza'];
+        $this->entregak = $banatzaileaSql['entregak'];
+        $this->beranduEntregak = $banatzaileaSql['berandu_entregatuta'];
+    }
     public $id;
     public $izena;
     public $abizena;
@@ -8,16 +18,4 @@ class Banatzailea {
     public $pasahitza;
     public $entregak;
     public $beranduEntregak;
-
-    public static function sortuBanatzailea($banatzaileaSql) : banatzailea {
-        $banatzailea = new banatzailea();
-        $banatzailea->id = $banatzaileaSql['id'];
-        $banatzailea->izena = $banatzaileaSql['izena'];
-        $banatzailea->abizena = $banatzaileaSql['abizena'];
-        $banatzailea->erabiltzailea = $banatzaileaSql['erabiltzailea'];
-        $banatzailea->pasahitza = $banatzaileaSql['pasahitza'];
-        $banatzailea->entregak = $banatzaileaSql['entregak'];
-        $banatzailea->beranduEntregak = $banatzaileaSql['berandu_entregatuta'];
-        return $banatzailea;
-    }
 }

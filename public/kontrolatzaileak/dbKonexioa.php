@@ -39,6 +39,16 @@ class dbKonexioa
         }
     }
 
+    public function lortuBanatzailea($banatzaileaId) {
+        $sql = "SELECT * FROM `Banatzailea` WHERE id = '$banatzaileaId'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Funtzio honek datubasetik erabiltzaileari dagokion paketeak itzultzen ditu
      * @param mixed $banatzaileaId banatzailearen id-a
@@ -47,6 +57,26 @@ class dbKonexioa
         $sql = "SELECT * FROM `Paketea`WHERE `Banatzailea_id` = '$banatzaileaId';";
         return $this->conn->query($sql);
         
+    }
+
+    /**
+     * Funtzio honek datubasetitk banatzaile honek banatu duen paketeen inzidentziak itzultzen ditu
+     * @param mixed $banatzaileaId banatzailearen id-a
+     */
+    public function lortuPaketenInzidentziak($banatzaileaId){
+        $sql = "SELECT COUNT(*)
+        FROM `Paketea` 
+        WHERE `Paketea`.`Banatzailea_id` = '$banatzaileaId'
+        AND EXISTS (
+            SELECT 1 
+            FROM `paketeak_inzidenzia_eduki` 
+            WHERE `paketeak_inzidenzia_eduki`.`paketea` = `Paketea`.`id`
+        );";
+
+        $result = $this->conn->query($sql);
+        $row = $result->fetch_row();
+        return $row[0]; // Devuelve el número de filas
+    
     }
 
     /**

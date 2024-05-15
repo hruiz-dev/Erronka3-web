@@ -14,7 +14,7 @@ $banatzaileaSql = $konexia->login($erabiltzailea, $pasahitza);
 
 
 if ($banatzaileaSql != null) {
-    $banatzailea = Banatzailea::sortuBanatzailea($banatzaileaSql);
+    $banatzailea = new Banatzailea($banatzaileaSql);
     $sesioa->gordeBanatzailea($banatzailea);
     header('Location: ../main.php');
 } else {
