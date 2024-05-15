@@ -1,6 +1,6 @@
 <?php
 
-class banatzailea {
+class Banatzailea {
     public $id;
     public $izena;
     public $abizena;

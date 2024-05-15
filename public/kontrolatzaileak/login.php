@@ -1,4 +1,8 @@
 <?php
+require_once "sesioa.php";
+require_once "dbKonexioa.php";
+require_once "../modeloak/banatzailea.php";
+
 $sesioa = new sesioa();
 
 $konexia = new dbKonexioa();
@@ -8,11 +12,11 @@ $pasahitza = $_POST['pasahitza'];
 
 $banatzaileaSql = $konexia->login($erabiltzailea, $pasahitza);
 
-$banatzailea = banatzailea::sortuBanatzailea($banatzaileaSql);
 
-if ($banatzailea != null) {
+if ($banatzaileaSql != null) {
+    $banatzailea = Banatzailea::sortuBanatzailea($banatzaileaSql);
     $sesioa->gordeBanatzailea($banatzailea);
-    header('Location: ../dashboard.php');
+    header('Location: ../main.php');
 } else {
     header('Location: ../index.php?errorea=Erabiltzailea edo pasahitza okerra');
 }

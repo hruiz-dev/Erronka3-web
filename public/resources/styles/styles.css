@@ -48,6 +48,12 @@ body{
   flex-direction: column;
   justify-content: stretch;
   padding-inline: 5vw;
+  overflow: auto;
+  max-height: 60vh;
+}
+
+.paketeak-cont::-webkit-scrollbar {
+  display: none;
 }
 
 .paketeak-ind{

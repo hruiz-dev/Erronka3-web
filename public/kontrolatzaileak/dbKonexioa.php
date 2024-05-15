@@ -3,7 +3,7 @@
 class dbKonexioa 
 {
     private $host = "mysql";
-    private $db = "ikasleak";
+    private $db = "pakAG";
     private $user = "root";
 
     private $pass = "root";
@@ -30,17 +30,27 @@ class dbKonexioa
         $erabiltzailea = $this->mysqlFormat($erabiltzailea);
         $pasahitza = $this->mysqlFormat($pasahitza);
 
-        $sql = "SELECT * FROM erabiltzaileak WHERE erabiltzailea = '$erabiltzailea' AND pasahitza = '$pasahitza'";
+        $sql = "SELECT * FROM `Banatzailea` WHERE erabiltzailea = '$erabiltzailea' AND pasahitza = '$pasahitza'";
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
-            return banatzailea::sortuBanatzailea($result->fetch_assoc());
+            return $result->fetch_assoc();
         } else {
             return null;
         }
     }
 
     /**
-     * funtzi honek mysql ijezioak saiesteko formatuan itzultzen du psatutako string-a
+     * Funtzio honek datubasetik erabiltzaileari dagokion paketeak itzultzen ditu
+     * @param mixed $banatzaileaId banatzailearen id-a
+     */
+    public function lortuBanatzailearenPaketeak($banatzaileaId){
+        $sql = "SELECT * FROM `Paketea`WHERE `Banatzailea_id` = '$banatzaileaId';";
+        return $this->conn->query($sql);
+        
+    }
+
+    /**
+     * funtzio honek mysql ijezioak saiesteko formatuan itzultzen du psatutako string-a
      */
     function mysqlFormat($format) : string {
         return $this->conn->real_escape_string($format);

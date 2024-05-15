@@ -3,7 +3,7 @@
 /**
  * Klase honek sesioarekin erlazionaturiko funtzioak gordetzen ditu
  */
-class sesioa {
+class Sesioa {
     
     public function __construct() {
         session_start();
@@ -25,5 +25,9 @@ class sesioa {
         
         $_SESSION['banatzailea'] = $banatzailea;
         
+    }
+
+    public function saioaItxi() {
+        session_destroy();
     }
 }
