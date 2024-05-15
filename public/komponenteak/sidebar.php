@@ -1,9 +1,34 @@
 <?php
 
+require_once "kontrolatzaileak/sesioa.php";
 /**
- * Sidebar Komponentea sortzeko erabiltzen den funtzioa
+ * Funtzio honek sidebar html komponetea bueltatzen du
+ * @param string $aktiboa aktibo dagoen orriaren izena pasa behar da
  */
-function sidebar(string $erabiltzailea = "Erabiltzailea") {
+function sidebar($aktiboa) {
+  $sesioa =  Sesioa::getInstantzia();
+  $banatzailea = $sesioa->lortuBanatzailea();
+  $erabiltzailea = $banatzailea->izena . " " . $banatzailea->abizena;
+
+
+  $orriak = [array("Hasiera","main.php"),
+   array("Nire paketeak", "paketeak.php"),
+   array("Inzidentziak", "inzidentziak.php"),
+   array("Historiala", "historiala.php")];
+  $menua = "";
+
+  foreach ($orriak as $orria) {
+    $klasea = $aktiboa;
+    $klasea == $orria[1] ? $klasea = 'class="nav-link text-white active"' : $klasea = 'class="nav-link text-white"';
+    $menua .= <<<HTML
+      <li class="nav-item">
+            <a href="{$orria[1]}" {$klasea} aria-current="page">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href=""></use></svg>
+              {$orria[0]}
+            </a>
+          </li>
+    HTML;
+  }
     return <<<HTML
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
         <a href="main.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -12,30 +37,7 @@ function sidebar(string $erabiltzailea = "Erabiltzailea") {
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="main.php" class="nav-link active" aria-current="page">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-              Hasiera
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-              Nire paketeak
-            </a>
-          </li>
-          <li>
-            <a href="inzidentziak.php" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-              Inzidentziak
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-              Historiala
-            </a>
-          </li>
+          $menua
         </ul>
         <hr>
         <div class="dropdown">

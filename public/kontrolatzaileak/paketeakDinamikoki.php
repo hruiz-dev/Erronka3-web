@@ -7,13 +7,14 @@ require_once "dbKonexioa.php";
 require_once "../komponenteak/paketea.php";
 
 
-$sesioa = new Sesioa();
+$sesioa = Sesioa::getInstantzia();
   $banatzailea = $sesioa->lortuBanatzailea();
 
   $konexioa = new dbKonexioa();
   $paketeak = $konexioa->lortuBanatzailearenPaketeak($banatzailea->id);
   $paketeakHtml = "";
   
+  // paketen informazioa aktualizatzeko metodoa
 if (isset($_GET["paketeak"])) {
   while ($paketeaData = $paketeak->fetch_assoc()) {
   
@@ -31,7 +32,7 @@ if (isset($_GET["paketeak"])) {
 
 echo $paketeakHtml;
 }
-
+// banatzailearen datuak aktualizatzeko metodoa
 if (isset($_GET["datuak"])) {
   $entregatubearrekoak = 0;
   while ($paketeaData = $paketeak->fetch_assoc()) {

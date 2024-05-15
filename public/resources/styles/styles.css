@@ -36,12 +36,10 @@ body{
 }
 
 .hasiera-cont-stats-ind-num{
-  font-size: 70px;
+  font-size: 40px;
 }
 
-.hasiera-cont-stats-ind-desc{
 
-}
 
 .paketeak-cont{
   display: flex;

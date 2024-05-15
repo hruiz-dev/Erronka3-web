@@ -1,5 +1,9 @@
 <?php
 require_once __DIR__ . "/../modeloak/paketea.php";
+
+/**
+ * Funtzi honek pakete baten HTML kodea sortzen du.
+ */
 function sortuPaketeaHtml(Paketea $paketea) {
     return <<<HTML
     <div class="paketeak-ind">

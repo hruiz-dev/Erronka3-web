@@ -6,7 +6,7 @@ require_once "komponenteak/sidebar.php";
 require_once "komponenteak/paketea.php";
 // require_once "kontrolatzaileak/mainKontrolatzailea.php";
 
-$sesioa = new Sesioa();
+$sesioa = Sesioa::getInstantzia();
 if ($sesioa->lortuBanatzailea() == null) {
   header('Location: index.php');
 }
@@ -26,7 +26,7 @@ if ($sesioa->lortuBanatzailea() == null) {
     <title>Kontrol panela</title>
 </head>
 <body>
-    <?php echo sidebar($banatzailea->izena . " " . $banatzailea->abizena); ?>
+    <?php echo sidebar("main.php"); ?>
       <div class="hasiera-cont">
         <div class="hasiera-cont-stats">
             <div class="hasiera-cont-stats-ind">

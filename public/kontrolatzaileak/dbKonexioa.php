@@ -39,6 +39,10 @@ class dbKonexioa
         }
     }
 
+    /**
+     * banatzailearen id-a erabiliz, banatzailearen datuak itzultzen ditu
+     * @param mixed $banatzaileaId banatzailearen id-a
+     */
     public function lortuBanatzailea($banatzaileaId) {
         $sql = "SELECT * FROM `Banatzailea` WHERE id = '$banatzaileaId'";
         $result = $this->conn->query($sql);

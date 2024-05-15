@@ -3,7 +3,7 @@ require_once "sesioa.php";
 require_once "dbKonexioa.php";
 require_once "../modeloak/banatzailea.php";
 
-$sesioa = new sesioa();
+$sesioa = Sesioa::getInstantzia();
 
 $konexia = new dbKonexioa();
 
