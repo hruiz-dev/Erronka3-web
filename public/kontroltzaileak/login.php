@@ -6,7 +6,9 @@ $konexia = new dbKonexioa();
 $erabiltzailea = $_POST['erabiltzailea'];
 $pasahitza = $_POST['pasahitza'];
 
-$banatzailea = $konexia->login($erabiltzailea, $pasahitza);
+$banatzaileaSql = $konexia->login($erabiltzailea, $pasahitza);
+
+$banatzailea = banatzailea::sortuBanatzailea($banatzaileaSql);
 
 if ($banatzailea != null) {
     $sesioa->gordeBanatzailea($banatzailea);
