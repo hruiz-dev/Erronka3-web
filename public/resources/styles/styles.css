@@ -107,3 +107,7 @@ body{
 .inzidentzia-show-cont{
   padding: 20px;
 }
+/* Inzidentziak estiloa */
+.list-group-item.list-group-item-action.py-3.lh-sm:hover {
+  background-color: #408cff;
+}
