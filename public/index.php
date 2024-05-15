@@ -9,7 +9,7 @@
 
         
         <main class="form-signin w-25 m-auto">
-            <form>
+            <form  method="POST" action="kontrolatzaileak/login.php">
                 <h1 class="h3 mb-3 fw-bold text-center">Saioa hasi</h1>
                 <img class="mb-4 w-50 rounded mx-auto d-block" src="resources/img/empresaLogo.png" alt="">
                 
@@ -21,7 +21,7 @@
                     <input type="password" class="form-control" id="pasahitza" name="pasahitza" placeholder="Pasahitza">
                     <label for="pasahitza">Pasahitza</label>
                 </div>
-                <button class="btn btn-primary w-100 py-2 mt-4" type="submit">Sign in</button>
+                <button class="btn btn-primary w-100 py-2 mt-4" type="submit">Saioa hasi</button>
                 <?php if (isset($_GET['errorea'])) { ?>
                     <div class="alert alert-danger mt-4" role="alert">
                         <?php echo $_GET['errorea']; ?>
