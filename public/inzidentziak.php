@@ -49,7 +49,7 @@ if ($sesioa->lortuBanatzailea() == null) {
     document.getElementById("inzidentziaShowContTitle").innerHTML = datuak[index].hartzailea
     document.getElementById("inzidentziaShowContInform").innerHTML = datuak[index].informazioa
     document.getElementById(`inzidentziaBlock${lastindex}`).style.backgroundColor= "rgb(248,249,250)"
-    document.getElementById(`inzidentziaBlock${index}`).style.backgroundColor= "#9fc0d4"
+    document.getElementById(`inzidentziaBlock${index}`).style.backgroundColor= "#d9f0ff"
     lastindex=index
   }
 
