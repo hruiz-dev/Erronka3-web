@@ -26,7 +26,7 @@ if ($sesioa->lortuBanatzailea() == null) {
     <title>Kontrol panela</title>
 </head>
 <body>
-    <?php echo sidebar("main.php"); ?>
+    <?php echo sidebar("historiala.php"); ?>
       <div class="hasiera-cont m-4">
         <h2>Historiala</h2>
         <hr>
