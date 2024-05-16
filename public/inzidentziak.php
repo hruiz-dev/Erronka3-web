@@ -28,17 +28,9 @@ if ($sesioa->lortuBanatzailea() == null) {
         <a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
           <span class="fs-5 fw-semibold">Inzidentziak</span>
         </a>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
+        <div id="inzidentziakCont">
+          
+        </div>
         </div>
       </div>
       <div class="inzidentzia-show-cont">
@@ -47,3 +39,31 @@ if ($sesioa->lortuBanatzailea() == null) {
       </div>
 </body>
 </html>
+<script>
+  datuakKargatu();
+  setInterval(datuakKargatu, 10000);
+  function datuakKargatu(){
+
+    const xhttppaketeak = new XMLHttpRequest();
+    xhttppaketeak.onload = function() {
+        document.getElementById("inzidentziakCont").innerHTML =''
+
+        datuak=JSON.parse(this.response)
+
+        datuak.forEach(function(inzidentzia){
+          document.getElementById("inzidentziakCont").innerHTML +=`
+          <a href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+              <strong class="mb-1"></strong>
+              <small>${inzidentzia.entrega_egin_beharreko_data}</small>
+            </div>
+            <div class="col-10 mb-1 small">${inzidentzia.informazioa}</div>
+          </a>
+          `
+        })
+
+    }
+    xhttppaketeak.open("GET", "routes/inzidentziakLortu.php");
+    xhttppaketeak.send();
+  }
+</script>

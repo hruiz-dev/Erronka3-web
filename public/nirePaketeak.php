@@ -49,7 +49,7 @@ if ($sesioa->lortuBanatzailea() == null) {
         document.getElementById("paketakCont").innerHTML =
         this.response;
     }
-    xhttppaketeak.open("GET", "routes/inzidentziakLortu.php");
+    xhttppaketeak.open("GET", "kontrolatzaileak/paketeakDinamikoki.php?paketeak=true");
     xhttppaketeak.send();
   }
 </script>
