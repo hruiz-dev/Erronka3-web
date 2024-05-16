@@ -88,7 +88,8 @@ class dbKonexioa
         INNER JOIN Banatzailea ON Pakete_Historiala.Banatzailea_id=Banatzailea.id 
         INNER JOIN paketeak_inzidenzia_eduki ON Pakete_Historiala.id=paketeak_inzidenzia_eduki.paketea 
         INNER JOIN Inzidenzia ON paketeak_inzidenzia_eduki.inzidenzia=Inzidenzia.inzidenzia_kodea
-        WHERE Banatzailea.id=$banatzaileaId;";
+        WHERE Banatzailea.id=$banatzaileaId
+        ORDER BY Pakete_Historiala.entrega_egin_beharreko_data DESC";
 
         $rows = mysqli_fetch_all($this->conn->query($sql), MYSQLI_ASSOC);
         return $rows;
