@@ -11,10 +11,10 @@ function sidebar($aktiboa) {
   $erabiltzailea = $banatzailea->izena . " " . $banatzailea->abizena;
 
 
-  $orriak = [array("Hasiera","main.php"),
-   array("Nire paketeak", "paketeak.php"),
-   array("Inzidentziak", "inzidentziak.php"),
-   array("Historiala", "historiala.php")];
+  $orriak = [array("Hasiera","main.php", '<i class="bi bi-speedometer"></i>'),
+   array("Nire paketeak", "nirePaketeak.php", '<i class="bi bi-box-seam"></i>'),
+   array("Inzidentziak", "inzidentziak.php", '<i class="bi bi-exclamation-triangle"></i>'),
+   array("Historiala", "historiala.php", '<i class="bi bi-table"></i>')];
   $menua = "";
 
   foreach ($orriak as $orria) {
@@ -23,7 +23,7 @@ function sidebar($aktiboa) {
     $menua .= <<<HTML
       <li class="nav-item">
             <a href="{$orria[1]}" {$klasea} aria-current="page">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href=""></use></svg>
+              {$orria[2]}
               {$orria[0]}
             </a>
           </li>
