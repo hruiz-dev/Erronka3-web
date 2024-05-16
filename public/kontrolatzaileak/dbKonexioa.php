@@ -90,7 +90,7 @@ class dbKonexioa
         INNER JOIN Inzidenzia ON paketeak_inzidenzia_eduki.inzidenzia=Inzidenzia.inzidenzia_kodea
         WHERE Banatzailea.id=$banatzaileaId;";
 
-        return $this->conn->query($sql);
+        return $this->conn->query($sql)->fetch_row();
         
     }
 
