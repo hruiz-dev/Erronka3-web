@@ -12,9 +12,9 @@ $sesioa = Sesioa::getInstantzia();
 
   $konexioa = new dbKonexioa();
   $paketeak = $konexioa->lortuBanatzailearenPaketeak($banatzailea->id);
-  $paketeakHtml = "";
+  $paketeakJson = [];
   
-  // paketen informazioa aktualizatzeko metodoa
+  //if honek get patizio bat iristen bazaio orrialde honi datuak banatzailearen paketen datuak json moduan pasatzen ditu
 if (isset($_GET["paketeak"])) {
   while ($paketeaData = $paketeak->fetch_assoc()) {
   
@@ -27,10 +27,10 @@ if (isset($_GET["paketeak"])) {
     $paketeaData['jatorria'], 
     $paketeaData['entregatuta']);
   
-    $paketeakHtml .= sortuPaketeaHtml($paketea);
+    array_push($paketeakJson,$paketea);
   }
 
-echo $paketeakHtml;
+echo json_encode($paketeakJson);
 }
 // banatzailearen datuak aktualizatzeko metodoa
 if (isset($_GET["datuak"])) {
