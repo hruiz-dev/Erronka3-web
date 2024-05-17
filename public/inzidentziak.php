@@ -28,22 +28,57 @@ if ($sesioa->lortuBanatzailea() == null) {
         <a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
           <span class="fs-5 fw-semibold">Inzidentziak</span>
         </a>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
-        <?php echo sortuInzidenziaHtml(); ?>
+        <div id="inzidentziakCont">
+          
+        </div>
         </div>
       </div>
-      <div class="inzidentzia-show-cont">
-        <h2>List group item heading</h2>
-        <span>Some placeholder content in a paragraph below the heading and date.</span>
+      <div class="inzidentzia-show-cont" id="inzidentziaShowCont">
+        <h2 id="inzidentziaShowContTitle">List group item heading</h2>
+        <span id="inzidentziaShowContInform">Some placeholder content in a paragraph below the heading and date.</span>
       </div>
 </body>
 </html>
+<script>
+
+  var datuak
+  var lastindex = 0
+  var index=0
+
+  function inzidentziaIkusi(index){
+    document.getElementById("inzidentziaShowContTitle").innerHTML = datuak[index].hartzailea
+    document.getElementById("inzidentziaShowContInform").innerHTML = datuak[index].informazioa
+    document.getElementById(`inzidentziaBlock${lastindex}`).style.backgroundColor= "rgb(248,249,250)"
+    document.getElementById(`inzidentziaBlock${index}`).style.backgroundColor= "#d9f0ff"
+    lastindex=index
+  }
+
+  datuakKargatu();
+  setInterval(datuakKargatu, 10000);
+  function datuakKargatu(){
+
+    const xhttppaketeak = new XMLHttpRequest();
+    xhttppaketeak.onload = function() {
+        document.getElementById("inzidentziakCont").innerHTML =''
+
+        datuak=JSON.parse(this.response)
+
+        datuak.forEach(function(inzidentzia, index){
+          document.getElementById("inzidentziakCont").innerHTML +=`
+          <a href="#" onclick="inzidentziaIkusi(${index})" id="inzidentziaBlock${index}" class="list-group-item list-group-item-action py-3 px-3 lh-sm" aria-current="true">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+              <strong class="mb-1">${inzidentzia.hartzailea}</strong>
+              <small>${inzidentzia.entrega_egin_beharreko_data}</small>
+            </div>
+            <div class="col-10 mb-1 small">${inzidentzia.informazioa}</div>
+          </a>
+          `
+        })
+
+        inzidentziaIkusi(lastindex)
+
+    }
+    xhttppaketeak.open("GET", "routes/inzidentziakLortu.php");
+    xhttppaketeak.send();
+  }
+</script>

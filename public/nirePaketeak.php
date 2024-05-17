@@ -3,6 +3,8 @@
 require_once "kontrolatzaileak/sesioa.php";
 require_once "modeloak/banatzailea.php";
 require_once "komponenteak/sidebar.php";
+require_once "komponenteak/paketea.php";
+// require_once "kontrolatzaileak/mainKontrolatzailea.php";
 
 $sesioa = Sesioa::getInstantzia();
 if ($sesioa->lortuBanatzailea() == null) {
@@ -24,26 +26,12 @@ if ($sesioa->lortuBanatzailea() == null) {
     <title>Kontrol panela</title>
 </head>
 <body>
-    <?php echo sidebar("main.php"); ?>
-      <div class="hasiera-cont">
-        <div class="hasiera-cont-stats">
-            <div class="hasiera-cont-stats-ind">
-              <div class="hasiera-cont-stats-ind-num" id="banatutako-paketeak"><i class="bi bi-box-seam" style="color:rgb(181, 153, 119)"></i> 25</div>
-            </div>
-            <div class="hasiera-cont-stats-ind">
-              <div class="hasiera-cont-stats-ind-num" id="banatzen-paketeak"><i class="bi bi-play-fill" style="color: rgb(130, 173, 113)"></i> 1</div>
-            </div>
-            <div class="hasiera-cont-stats-ind">
-              <div class="hasiera-cont-stats-ind-num" id="inzidentziak"><i class="bi bi-exclamation-triangle" style="color: rgb(173, 113, 113)"></i> 3</div>
-            </div>
-            <div class="hasiera-cont-stats-ind">
-              <div class="hasiera-cont-stats-ind-num" id="berandu-entregatutakoak"><i class="bi bi-clock-history" style="color:rgb(221, 211, 120)"></i> 8</div>
-            </div>
-        </div>
+    <?php echo sidebar("nirePaketeak.php"); ?>
+      <div class="hasiera-cont" style="margin-top: 40px">
         <div class="paketeak-cont" >
-          <h2>Paketeak</h2>
+          <h2>Nire paketeak</h2>
           <hr>
-          <div id="paketeakCont">
+          <div id="paketakCont">
 
           </div>
         </div>
@@ -51,9 +39,17 @@ if ($sesioa->lortuBanatzailea() == null) {
 </body>
 </html>
 
-<script type="module">
-  import { datuakKargatu } from "./components.js";
+<script>
   datuakKargatu();
   setInterval(datuakKargatu, 10000);
+  function datuakKargatu(){
 
+    const xhttppaketeak = new XMLHttpRequest();
+    xhttppaketeak.onload = function() {
+        document.getElementById("paketakCont").innerHTML =
+        this.response;
+    }
+    xhttppaketeak.open("GET", "kontrolatzaileak/paketeakDinamikoki.php?paketeak=true");
+    xhttppaketeak.send();
+  }
 </script>
