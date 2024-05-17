@@ -1,6 +1,6 @@
 <?php
 
-class dbKonexioa 
+class dbKonexioa
 {
     private $host = "mysql";
     private $db = "pakAG";
@@ -25,7 +25,8 @@ class dbKonexioa
      * @param $pasahitza erabiltzailearen pasahitza
      * @return banatzailea|null banatzailea aurkitu bada, banatzailea itzuliko du, bestela null
      */
-    public function login($erabiltzailea, $pasahitza){
+    public function login($erabiltzailea, $pasahitza)
+    {
 
         $erabiltzailea = $this->mysqlFormat($erabiltzailea);
         $pasahitza = $this->mysqlFormat($pasahitza);
@@ -43,7 +44,8 @@ class dbKonexioa
      * banatzailearen id-a erabiliz, banatzailearen datuak itzultzen ditu
      * @param mixed $banatzaileaId banatzailearen id-a
      */
-    public function lortuBanatzailea($banatzaileaId) {
+    public function lortuBanatzailea($banatzaileaId)
+    {
         $sql = "SELECT * FROM `Banatzailea` WHERE id = '$banatzaileaId'";
         $result = $this->conn->query($sql);
         if ($result->num_rows > 0) {
@@ -57,17 +59,19 @@ class dbKonexioa
      * Funtzio honek datubasetik erabiltzaileari dagokion paketeak itzultzen ditu
      * @param mixed $banatzaileaId banatzailearen id-a
      */
-    public function lortuBanatzailearenPaketeak($banatzaileaId){
+    public function lortuBanatzailearenPaketeak($banatzaileaId)
+    {
         $sql = "SELECT * FROM `Paketea`WHERE `Banatzailea_id` = '$banatzaileaId';";
         return $this->conn->query($sql);
-        
+
     }
 
     /**
      * Funtzio honek datubasetitk banatzaile honek banatu duen paketeen inzidentziak itzultzen ditu
      * @param mixed $banatzaileaId banatzailearen id-a
      */
-    public function lortuPaketenInzidentziak($banatzaileaId){
+    public function lortuPaketenInzidentziak($banatzaileaId)
+    {
         $sql = "SELECT COUNT(*)
         FROM `Paketea` 
         WHERE `Paketea`.`Banatzailea_id` = '$banatzaileaId'
@@ -80,10 +84,11 @@ class dbKonexioa
         $result = $this->conn->query($sql);
         $row = $result->fetch_row();
         return $row[0]; // Devuelve el número de filas
-    
+
     }
 
-    public function lortuBanatzailearenInzidentziak($banatzaileaId){
+    public function lortuBanatzailearenInzidentziak($banatzaileaId)
+    {
         $sql = "SELECT * FROM Inzidenzia 
         WHERE inzidenzia_kodea IN (
             SELECT inzidenzia FROM paketeak_inzidenzia_eduki 
@@ -96,13 +101,14 @@ class dbKonexioa
 
         $rows = mysqli_fetch_all($this->conn->query($sql), MYSQLI_ASSOC);
         return $rows;
-        
+
     }
 
     /**
      * funtzio honek mysql ijezioak saiesteko formatuan itzultzen du psatutako string-a
      */
-    function mysqlFormat($format) : string {
+    function mysqlFormat($format): string
+    {
         return $this->conn->real_escape_string($format);
     }
 

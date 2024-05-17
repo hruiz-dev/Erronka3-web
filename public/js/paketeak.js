@@ -1,14 +1,14 @@
 /**
  * Funtzi honek get petizio ba tegiten du gure php kontrolatzaileari eta bertatik gure banatzailearen paketeak ateratzen ditugu
  */
-export function datuakKargatu(){
+export function datuakKargatu() {
 
     const xhttppaketeak = new XMLHttpRequest();
-    xhttppaketeak.onload = function() {
+    xhttppaketeak.onload = function () {
         let array = JSON.parse(this.response);
         let html = "";
         array.forEach(element => {
-        html += sortuPaketea(element);
+            html += sortuPaketea(element);
         });
         document.getElementById("paketeakCont").innerHTML = html;
     }
@@ -17,15 +17,15 @@ export function datuakKargatu(){
     xhttppaketeak.send();
 
     const xhttpBanatzaileDatuak = new XMLHttpRequest();
-    xhttpBanatzaileDatuak.onload = function() {
+    xhttpBanatzaileDatuak.onload = function () {
 
         const datuak = JSON.parse(this.response);
         document.getElementById("banatutako-paketeak").innerHTML = "<i class='bi bi-box-seam' style='color:rgb(181, 153, 119)'></i> " + datuak[0];
-        
+
         document.getElementById("banatzen-paketeak").innerHTML = "<i class='bi bi-play-fill' style='color: rgb(130, 173, 113)'></i> " + datuak[1];
-        
+
         document.getElementById("inzidentziak").innerHTML = "<i class='bi bi-exclamation-triangle' style='color: rgb(173, 113, 113)'></i> " + datuak[2];
-        
+
         document.getElementById("berandu-entregatutakoak").innerHTML = "<i class='bi bi-clock-history' style='color:rgb(221, 211, 120)'></i> " + datuak[3];
     }
     xhttpBanatzaileDatuak.open("GET", "kontrolatzaileak/paketeakDinamikoki.php?datuak=true");
@@ -37,7 +37,7 @@ export function datuakKargatu(){
  * @param {*} json paketearen datuekin jsona
  * @returns html-a textu formatuan
  */
-function sortuPaketea(json){
+function sortuPaketea(json) {
     let paketeakInd = document.createElement('div');
     paketeakInd.className = 'paketeak-ind';
 

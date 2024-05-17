@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: mysql
--- Tiempo de generación: 17-05-2024 a las 06:56:02
--- Versión del servidor: 8.3.0
+-- Tiempo de generación: 17-05-2024 a las 17:15:19
+-- Versión del servidor: 8.4.0
 -- Versión de PHP: 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -203,8 +203,8 @@ CREATE TABLE `Paketea` (
 --
 
 INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatuta`, `Banatzailea_id`) VALUES
-(1, '2024-01-23', 'Doll Maddyson', '854x318', 0, '6099 Crescent Oaks Trail', '62 Dunning Park', 0, NULL),
-(2, '2023-12-05', 'Arther McKim', '569x363', 0, '2282 Armistice Park', '30508 Sommers Avenue', 0, NULL),
+(1, '2024-01-23', 'Doll Maddyson', '854x318', 0, '6099 Crescent Oaks Trail', '62 Dunning Park', 0, 1),
+(2, '2023-12-05', 'Arther McKim', '569x363', 0, '2282 Armistice Park', '30508 Sommers Avenue', 0, 1),
 (3, '2023-08-07', 'Cord Moysey', '800x684', 0, '14316 Helena Place', '6 Summer Ridge Center', 0, 71),
 (4, '2024-04-02', 'Sheffield Livingston', '780x317', 0, '36490 Forster Circle', '04818 Elmside Way', 0, 65),
 (5, '2023-05-24', 'Jeanine Skpsey', '11x170', 0, '68 Linden Junction', '2544 Daystar Place', 0, 14),
@@ -716,6 +716,13 @@ CREATE TABLE `paketeak_inzidenzia_eduki` (
   `paketea` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Volcado de datos para la tabla `paketeak_inzidenzia_eduki`
+--
+
+INSERT INTO `paketeak_inzidenzia_eduki` (`inzidenzia`, `paketea`) VALUES
+(13, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -739,8 +746,8 @@ CREATE TABLE `Pakete_Historiala` (
 --
 
 INSERT INTO `Pakete_Historiala` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatze_data`, `Banatzailea_id`) VALUES
-(1, '2023-09-01', 'Steward Tukely', '800x684', 0, '2 Truax Plaza', '6 Fordem Crossing', '2022-06-19', 65),
-(2, '2023-12-03', 'Trefor Cottisford', '11x170', 0, '054 Mallard Drive', '27 Cherokee Plaza', '2020-07-10', 14),
+(1, '2023-09-01', 'Steward Tukely', '800x684', 0, '2 Truax Plaza', '6 Fordem Crossing', '2022-06-19', 1),
+(2, '2023-12-03', 'Trefor Cottisford', '11x170', 0, '054 Mallard Drive', '27 Cherokee Plaza', '2020-07-10', 1),
 (3, '2023-12-07', 'Aaren Newell', '11x170', 0, '2 Amoth Lane', '866 International Place', '2023-01-21', 47),
 (4, '2023-12-13', 'Jaime Lindsey', '854x318', 1, '79 2nd Center', '24308 Browning Court', '2022-02-17', 18),
 (5, '2023-09-05', 'Deirdre Burgum', '569x363', 1, '91259 Haas Circle', '99588 Main Crossing', '2021-11-20', 24),

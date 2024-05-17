@@ -21,8 +21,8 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: webapp
-      MYSQL_USER: webapp
+      MYSQL_DATABASE: pakAG
+      MYSQL_USER: pakAG
       MYSQL_PASSWORD: root
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
