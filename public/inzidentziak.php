@@ -39,23 +39,24 @@ if ($sesioa->lortuBanatzailea() == null) {
       </div>
 </body>
 </html>
-<script>
+<script >
 
-  var datuak
-  var lastindex = 0
-  var index=0
+  let datuak = []
+  let lastindex = null
 
   function inzidentziaIkusi(index){
-    document.getElementById("inzidentziaShowContTitle").innerHTML = datuak[index].hartzailea
-    document.getElementById("inzidentziaShowContInform").innerHTML = datuak[index].informazioa
-    document.getElementById(`inzidentziaBlock${lastindex}`).style.backgroundColor= "rgb(248,249,250)"
+    const inzidezia = datuak.find(inzidentzia => inzidentzia.inzidenzia_kodea == index)
+    document.getElementById("inzidentziaShowContTitle").innerHTML = inzidezia.inzidenzia_kodea
+    document.getElementById("inzidentziaShowContInform").innerHTML = inzidezia.informazioa
+    if (lastindex != null) {document.getElementById(`inzidentziaBlock${lastindex}`).style.background = "rgb(248,249,250)"}
     document.getElementById(`inzidentziaBlock${index}`).style.backgroundColor= "#d9f0ff"
     lastindex=index
   }
 
-  datuakKargatu();
-  setInterval(datuakKargatu, 10000);
-  function datuakKargatu(){
+  inzidentziakKargatu();
+  
+  setInterval(inzidentziakKargatu, 10000);
+  function inzidentziakKargatu(){
 
     const xhttppaketeak = new XMLHttpRequest();
     xhttppaketeak.onload = function() {
@@ -63,16 +64,8 @@ if ($sesioa->lortuBanatzailea() == null) {
 
         datuak=JSON.parse(this.response)
 
-        datuak.forEach(function(inzidentzia, index){
-          document.getElementById("inzidentziakCont").innerHTML +=`
-          <a href="#" onclick="inzidentziaIkusi(${index})" id="inzidentziaBlock${index}" class="list-group-item list-group-item-action py-3 px-3 lh-sm" aria-current="true">
-            <div class="d-flex w-100 align-items-center justify-content-between">
-              <strong class="mb-1">${inzidentzia.hartzailea}</strong>
-              <small>${inzidentzia.entrega_egin_beharreko_data}</small>
-            </div>
-            <div class="col-10 mb-1 small">${inzidentzia.informazioa}</div>
-          </a>
-          `
+        datuak.forEach(function(inzidentzia){
+          document.getElementById("inzidentziakCont").innerHTML +=sortuIzidenzia(inzidentzia)
         })
 
         inzidentziaIkusi(lastindex)
@@ -80,5 +73,17 @@ if ($sesioa->lortuBanatzailea() == null) {
     }
     xhttppaketeak.open("GET", "routes/inzidentziakLortu.php");
     xhttppaketeak.send();
+  }
+
+  function sortuIzidenzia(inzidentzia) {
+    return `
+    <a href="#" onclick="inzidentziaIkusi(${inzidentzia.inzidenzia_kodea})" id="inzidentziaBlock${inzidentzia.inzidenzia_kodea}" class="list-group-item list-group-item-action py-3 px-3 lh-sm" aria-current="true">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+              <strong class="mb-1">${inzidentzia.inzidenzia_kodea}</strong>
+              <small>${inzidentzia.entrega_egin_beharreko_data}</small>
+            </div>
+            <div class="col-10 mb-1 small">${inzidentzia.informazioa}</div>
+          </a>
+    `
   }
 </script>

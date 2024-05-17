@@ -2,7 +2,7 @@
 
 class dbKonexioa 
 {
-    private $host = "10.23.25.174";
+    private $host = "mysql";
     private $db = "pakAG";
     private $user = "root";
 
@@ -84,12 +84,15 @@ class dbKonexioa
     }
 
     public function lortuBanatzailearenInzidentziak($banatzaileaId){
-        $sql = "SELECT * FROM `Pakete_Historiala` 
-        INNER JOIN Banatzailea ON Pakete_Historiala.Banatzailea_id=Banatzailea.id 
-        INNER JOIN paketeak_inzidenzia_eduki ON Pakete_Historiala.id=paketeak_inzidenzia_eduki.paketea 
-        INNER JOIN Inzidenzia ON paketeak_inzidenzia_eduki.inzidenzia=Inzidenzia.inzidenzia_kodea
-        WHERE Banatzailea.id=$banatzaileaId
-        ORDER BY Pakete_Historiala.entrega_egin_beharreko_data DESC";
+        $sql = "SELECT * FROM Inzidenzia 
+        WHERE inzidenzia_kodea IN (
+            SELECT inzidenzia FROM paketeak_inzidenzia_eduki 
+            WHERE paketea IN (
+                SELECT id FROM Pakete_Historiala 
+                WHERE Banatzailea_id = $banatzaileaId
+            )
+        );
+        ";
 
         $rows = mysqli_fetch_all($this->conn->query($sql), MYSQLI_ASSOC);
         return $rows;

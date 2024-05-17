@@ -15,6 +15,8 @@ services:
       - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
   mysql:
     image: mysql:latest
+    volumes:
+      - ./mysqlDB/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
     environment:

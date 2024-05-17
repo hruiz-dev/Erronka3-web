@@ -10,7 +10,7 @@ export function datuakKargatu(){
         array.forEach(element => {
         html += sortuPaketea(element);
         });
-        document.getElementById("paketakCont").innerHTML = html;
+        document.getElementById("paketeakCont").innerHTML = html;
     }
 
     xhttppaketeak.open("GET", "kontrolatzaileak/paketeakDinamikoki.php?paketeak=true");

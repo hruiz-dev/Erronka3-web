@@ -53,7 +53,9 @@ if ($sesioa->lortuBanatzailea() == null) {
 
 <script type="module">
   import { datuakKargatu } from "./components.js";
-  datuakKargatu();
-  setInterval(datuakKargatu, 10000);
-
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // Tu código aquí
+    datuakKargatu();
+    setInterval(datuakKargatu, 10000);
+});
 </script>

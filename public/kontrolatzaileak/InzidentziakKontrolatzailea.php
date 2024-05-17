@@ -16,11 +16,8 @@ class InzidentziakKontrolatzailea{
         $konexioa = new dbKonexioa();
 
         $inzidentziak=$konexioa->lortuBanatzailearenInzidentziak($banatzailea->id);
-
         echo json_encode($inzidentziak);
 
     }
 
 }
-
-?>
