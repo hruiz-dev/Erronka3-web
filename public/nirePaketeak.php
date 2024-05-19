@@ -36,32 +36,26 @@ $banatzailea = $sesioa->lortuBanatzailea();
     <div class="paketeak-cont">
       <h2>Banatu beharreko paketeak</h2>
       <hr>
-      <div id="paketakCont">
+      <div id="paketeakCont">
 
       </div>
       <br>
-      <h2>Banatzen hari naizen paketeak</h2>
-      <hr>
-      <div id="esleituGabekoak">
-
-      </div>
     </div>
-  </div>
+    <div class="hasiera-cont" style="margin-top: 40px">
+      <div class="paketeak-cont">
+        <h2>Banatzen hari naizen paketeak</h2>
+        <hr>
+        <div id="esleituGabekoak">
+
+        </div>
+      </div>
 </body>
 
 </html>
 
-<script>
+<script type="module">
+  import { datuakKargatu } from './js/paketeak.js';
   datuakKargatu();
   setInterval(datuakKargatu, 10000);
-  function datuakKargatu() {
 
-    const xhttppaketeak = new XMLHttpRequest();
-    xhttppaketeak.onload = function () {
-      document.getElementById("paketakCont").innerHTML =
-        this.response;
-    }
-    xhttppaketeak.open("GET", "kontrolatzaileak/paketeakDinamikoki.php?paketeak=true");
-    xhttppaketeak.send();
-  }
 </script>
