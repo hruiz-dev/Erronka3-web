@@ -2,16 +2,18 @@
 
 require_once "kontrolatzaileak/sesioa.php";
 require_once "modeloak/banatzailea.php";
-require_once "komponenteak/sidebar.php";
-require_once "komponenteak/paketea.php";
-// require_once "kontrolatzaileak/mainKontrolatzailea.php";
 
 $sesioa = Sesioa::getInstantzia();
 if ($sesioa->lortuBanatzailea() == null) {
   header('Location: index.php');
 }
-$banatzailea = $sesioa->lortuBanatzailea();
 
+
+
+require_once "komponenteak/sidebar.php";
+require_once "komponenteak/paketea.php";
+
+$banatzailea = $sesioa->lortuBanatzailea();
 ?>
 
 <!DOCTYPE html>
@@ -32,11 +34,12 @@ $banatzailea = $sesioa->lortuBanatzailea();
 
 <body>
   <?php echo sidebar("nirePaketeak.php"); ?>
+
   <div class="hasiera-cont" style="margin-top: 40px">
     <div class="paketeak-cont">
       <h2>Banatu beharreko paketeak</h2>
       <hr>
-      <div id="paketeakCont">
+      <div id="paketeakCont" class="paketeak-list">
 
       </div>
       <br>
@@ -45,7 +48,7 @@ $banatzailea = $sesioa->lortuBanatzailea();
       <div class="paketeak-cont">
         <h2>Banatzen hari naizen paketeak</h2>
         <hr>
-        <div id="esleituGabekoak">
+        <div id="esleituGabekoak" class="paketeak-list">
 
         </div>
       </div>

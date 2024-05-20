@@ -44,15 +44,23 @@ body{
 .paketeak-cont{
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
   padding-inline: 5vw;
-  overflow: auto;
   max-height: 60vh;
 }
 
-.paketeak-cont::-webkit-scrollbar {
+.paketeak-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  overflow: auto;
+   padding-inline: .3vw;
+  max-height: 60vh;
+}
+
+.paketeak-list::-webkit-scrollbar {
   display: none;
 }
+
 
 .paketeak-ind{
   display: flex;

@@ -52,7 +52,7 @@ $banatzailea = $sesioa->lortuBanatzailea();
     <div class="paketeak-cont">
       <h2>Paketeak</h2>
       <hr>
-      <div id="paketeakCont">
+      <div id="paketeakCont" class="paketeak-list">
 
       </div>
     </div>

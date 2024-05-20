@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: mysql
--- Tiempo de generación: 17-05-2024 a las 17:15:19
--- Versión del servidor: 8.4.0
+-- Tiempo de generación: 20-05-2024 a las 07:11:59
+-- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -194,7 +194,7 @@ CREATE TABLE `Paketea` (
   `hauskorra` tinyint(1) NOT NULL,
   `helburua` varchar(200) NOT NULL,
   `jatorria` varchar(200) DEFAULT NULL,
-  `entregatuta` tinyint(1) NOT NULL,
+  `entregatzen` tinyint(1) NOT NULL,
   `Banatzailea_id` int UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -202,7 +202,7 @@ CREATE TABLE `Paketea` (
 -- Volcado de datos para la tabla `Paketea`
 --
 
-INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatuta`, `Banatzailea_id`) VALUES
+INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatzen`, `Banatzailea_id`) VALUES
 (1, '2024-01-23', 'Doll Maddyson', '854x318', 0, '6099 Crescent Oaks Trail', '62 Dunning Park', 0, 1),
 (2, '2023-12-05', 'Arther McKim', '569x363', 0, '2282 Armistice Park', '30508 Sommers Avenue', 0, 1),
 (3, '2023-08-07', 'Cord Moysey', '800x684', 0, '14316 Helena Place', '6 Summer Ridge Center', 0, 71),
@@ -691,7 +691,7 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (486, '2023-08-18', 'Leona Jimpson', '637x92', 0, '942 Corry Plaza', '20291 Dwight Hill', 0, 9),
 (487, '2023-09-10', 'Swen Giral', '340x828', 0, '9805 Manley Street', '803 Stephen Parkway', 0, NULL),
 (488, '2024-03-07', 'Delinda Falloon', '69x172', 0, '86726 Bayside Circle', '20 Rutledge Park', 0, 2);
-INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatuta`, `Banatzailea_id`) VALUES
+INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatzen`, `Banatzailea_id`) VALUES
 (489, '2024-01-29', 'Sean Batters', '128x696', 0, '6209 Manufacturers Terrace', '05384 Mcguire Park', 0, NULL),
 (490, '2023-08-01', 'Thom Winram', '604x107', 0, '8103 Norway Maple Trail', '0461 Bultman Place', 0, NULL),
 (491, '2023-11-07', 'Fidelia Petrashkov', '959x183', 0, '2 Meadow Valley Avenue', '87231 Dixon Park', 0, 74),
