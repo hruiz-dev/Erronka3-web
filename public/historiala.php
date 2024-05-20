@@ -3,7 +3,6 @@
 require_once "kontrolatzaileak/sesioa.php";
 require_once "modeloak/banatzailea.php";
 require_once "komponenteak/sidebar.php";
-require_once "komponenteak/paketea.php";
 // require_once "kontrolatzaileak/mainKontrolatzailea.php";
 
 $sesioa = Sesioa::getInstantzia();
