@@ -2,7 +2,7 @@
  class Paketea
 {
 
-    function __construct($id, $entragaEginBeharrekoData, $hartzailea, $dimensioak, $hauskorra, $helburua, $jatorria, $entregatuta) {
+    function __construct($id, $entragaEginBeharrekoData, $hartzailea, $dimensioak, $hauskorra, $helburua, $jatorria, $entregatzen, $banatzaileaId) {
         $this->id = $id;
         $this->entragaEginBeharrekoData = $entragaEginBeharrekoData;
         $this->hartzailea = $hartzailea;
@@ -10,7 +10,8 @@
         $this->hauskorra = $hauskorra;
         $this->helburua = $helburua;
         $this->jatorria = $jatorria;
-        $this->entregatuta = $entregatuta;
+        $this->entregatzen = $entregatzen;
+        $this->banatzaileaId = $banatzaileaId;
         
     }
     public $id;
@@ -20,5 +21,6 @@
     public $hauskorra;
     public $helburua;
     public $jatorria;
-    public $entregatuta;
+    public $entregatzen;
+    public $banatzaileaId;
 }

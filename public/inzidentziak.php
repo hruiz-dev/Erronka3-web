@@ -2,7 +2,6 @@
 require_once "kontrolatzaileak/sesioa.php";
 require_once "komponenteak/sidebar.php";
 require_once "modeloak/banatzailea.php";
-require_once "komponenteak/inzidenzia.php";
 $sesioa = Sesioa::getInstantzia();
 if ($sesioa->lortuBanatzailea() == null) {
   header('Location: index.php');

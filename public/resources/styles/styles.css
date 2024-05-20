@@ -39,13 +39,11 @@ body{
   font-size: 40px;
 }
 
-
-
 .paketeak-cont{
   display: flex;
   flex-direction: column;
   padding-inline: 5vw;
-  max-height: 60vh;
+  max-height: 50vh;
 }
 
 .paketeak-list{
@@ -53,7 +51,7 @@ body{
   flex-direction: column;
   justify-content: stretch;
   overflow: auto;
-   padding-inline: .3vw;
+  padding-inline: .3vw;
   max-height: 60vh;
 }
 
@@ -118,4 +116,10 @@ body{
 /* Inzidentziak estiloa */
 .list-group-item.list-group-item-action.py-3.lh-sm:hover {
   background-color: #408cff;
+}
+
+@media (max-width: 768px){
+  .sidebar{
+    display: none;
+  }
 }

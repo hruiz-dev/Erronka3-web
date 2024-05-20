@@ -1,5 +1,7 @@
 <?php
 
+require_once "../modeloak/paketea.php";
+
 class dbKonexioa
 {
     private $host = "mysql";
@@ -87,6 +89,9 @@ class dbKonexioa
 
     }
 
+    /**
+     * Funtzio honek banatzailea eduki dituen inzidentzia guztiak itzultzen ditu
+     */
     public function lortuBanatzailearenInzidentziak($banatzaileaId)
     {
         $sql = "SELECT * FROM Inzidenzia 
@@ -110,6 +115,54 @@ class dbKonexioa
     function mysqlFormat($format): string
     {
         return $this->conn->real_escape_string($format);
+    }
+
+    /**
+     * Funtzio honek paketea banatzen jartzen du bere id-a erabiliz
+     * @param mixed $id paketearen id-a
+     */
+    public function paketeaBanatzenJarri($id) {
+        $sql = "UPDATE `Paketea` SET `entregatzen` = '1' WHERE `Paketea`.`id` = $id;";
+        $this->conn->query($sql);
+    }
+
+    /**
+     * Funtzi honek paketea entregatuta jartzen du bere id-a erabiliz
+     * Lehenik datubasetik paketearen datuak eskuratzen ditu, gero pakete historian sartu eta azkenik paketa ezabatu
+     */
+    public function paketeaEntregatutaJarri($id) {
+        $sql = "SELECT * FROM `Paketea` WHERE `id` = $id";
+        $response = $this->conn->query($sql);
+        
+        $response = $response->fetch_assoc();
+        $paketea = new Paketea(
+        $response['id'], 
+        $response['entrega_egin_beharreko_data'], 
+        $response['hartzailea'], 
+        $response['dimensioak'], 
+        $response['hauskorra'], 
+        $response['helburua'], 
+        $response['jatorria'], 
+        $response['entregatzen'], 
+        $response['Banatzailea_id']);
+        
+        
+        $sql = "INSERT INTO `Pakete_Historiala` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, 
+        `hauskorra`, `helburua`, `jatorria`, `entregatze_data`, `Banatzailea_id`) 
+        VALUES (
+            NULL, '{$paketea->entragaEginBeharrekoData}',
+            '{$paketea->hartzailea}',
+            '{$paketea->dimensioak}',
+            '{$paketea->hauskorra}',
+            '{$paketea->helburua}',
+            '{$paketea->jatorria}',
+            NOW(),
+            '{$paketea->banatzaileaId}')";
+
+        $this->conn->query($sql);
+            
+        $sql = "DELETE FROM `Paketea` WHERE `id` = $id";
+        $this->conn->query($sql);
     }
 
     public function __destruct()

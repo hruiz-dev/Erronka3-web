@@ -11,7 +11,6 @@ if ($sesioa->lortuBanatzailea() == null) {
 
 
 require_once "komponenteak/sidebar.php";
-require_once "komponenteak/paketea.php";
 
 $banatzailea = $sesioa->lortuBanatzailea();
 ?>
@@ -57,8 +56,26 @@ $banatzailea = $sesioa->lortuBanatzailea();
 </html>
 
 <script type="module">
-  import { datuakKargatu } from './js/paketeak.js';
-  datuakKargatu();
-  setInterval(datuakKargatu, 10000);
+  import { erakutsiBanatzenPaketeak } from "./js/paketeak.js";
 
+  import {jarriBanatzen, markatuEntregatuta} from "./js/dbActions.js";
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    updateHtml();
+    setInterval(updateHtml, 10000);
+  });
+
+  function updateHtml() {
+    erakutsiBanatzenPaketeak();
+  }
+
+  window.banatzenJarri = function (id) {
+  jarriBanatzen(id);
+  updateHtml();
+}
+
+  window.entregatutaMarkatu = function (id) {
+    markatuEntregatuta(id);
+    updateHtml();
+  }
 </script>

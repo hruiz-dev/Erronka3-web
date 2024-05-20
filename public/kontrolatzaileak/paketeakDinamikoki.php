@@ -4,8 +4,6 @@ require_once "sesioa.php";
 require_once "../modeloak/banatzailea.php";
 require_once "../modeloak/paketea.php";
 require_once "dbKonexioa.php";
-require_once "../komponenteak/paketea.php";
-
 
 $sesioa = Sesioa::getInstantzia();
   $banatzailea = $sesioa->lortuBanatzailea();
@@ -25,7 +23,8 @@ if (isset($_GET["paketeak"])) {
     $paketeaData['hauskorra'], 
     $paketeaData['helburua'], 
     $paketeaData['jatorria'], 
-    $paketeaData['entregatuta']);
+    $paketeaData['entregatzen'],
+    $paketeaData['Banatzailea_id']);
   
     array_push($paketeakJson,$paketea);
   }
