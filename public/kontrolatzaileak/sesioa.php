@@ -24,7 +24,7 @@ class Sesioa {
     /**
      * Funtzio honek sesioan gordetako banatailea itzultzen du
      */
-    public function lortuBanatzailea() : banatzailea {
+    public function lortuBanatzailea() {
         
         return $_SESSION['banatzailea'];
         
@@ -33,7 +33,7 @@ class Sesioa {
     /**
      * Metodo honek banatzailea gordetzen du sesioan
      */
-    public function gordeBanatzailea(banatzailea $banatzailea) {
+    public function gordeBanatzailea( $banatzailea) {
         
         $_SESSION['banatzailea'] = $banatzailea;
         

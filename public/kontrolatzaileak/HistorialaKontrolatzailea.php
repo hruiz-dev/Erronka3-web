@@ -5,20 +5,20 @@ require_once "../modeloak/banatzailea.php";
 require_once "../modeloak/paketea.php";
 require_once "dbKonexioa.php";
 
-class InzidentziakKontrolatzailea{
+class HistorialaKontrolatzailea{
 
     /**
-     * Funtzi honek inzidentzia guztiak json formatuan itzultze ditu
+     * Funtzi honek entregatutako pakete guztiak json formatuan itzultze ditu
      */
-    public static function kargatuInzidentziak(){
+    public static function kargatuHistoriala(){
 
         $sesioa = Sesioa::getInstantzia();
         $banatzailea = $sesioa->lortuBanatzailea();
 
         $konexioa = new dbKonexioa();
 
-        $inzidentziak=$konexioa->lortuBanatzailearenInzidentziak($banatzailea->id);
-        echo json_encode($inzidentziak);
+        $historiala=$konexioa->lortuBanatzailearenHistoriala($banatzailea->id);
+        echo json_encode($historiala);
 
     }
 

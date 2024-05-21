@@ -2,16 +2,17 @@
 
 require_once "kontrolatzaileak/sesioa.php";
 require_once "modeloak/banatzailea.php";
-require_once "komponenteak/sidebar.php";
-require_once "komponenteak/paketea.php";
-// require_once "kontrolatzaileak/mainKontrolatzailea.php";
 
 $sesioa = Sesioa::getInstantzia();
 if ($sesioa->lortuBanatzailea() == null) {
   header('Location: index.php');
 }
-$banatzailea = $sesioa->lortuBanatzailea();
 
+
+
+require_once "komponenteak/sidebar.php";
+
+$banatzailea = $sesioa->lortuBanatzailea();
 ?>
 
 <!DOCTYPE html>
@@ -32,30 +33,49 @@ $banatzailea = $sesioa->lortuBanatzailea();
 
 <body>
   <?php echo sidebar("nirePaketeak.php"); ?>
+
   <div class="hasiera-cont" style="margin-top: 40px">
     <div class="paketeak-cont">
       <h2>Banatu beharreko paketeak</h2>
       <hr>
-      <div id="paketeakCont">
+      <div id="paketeakCont" class="paketeak-list">
 
       </div>
       <br>
     </div>
-    <div class="hasiera-cont" style="margin-top: 40px">
-      <div class="paketeak-cont">
-        <h2>Banatzen hari naizen paketeak</h2>
-        <hr>
-        <div id="esleituGabekoak">
+    <div class="paketeak-cont">
+      <h2>Banatzen hari naizen paketeak</h2>
+      <hr>
+      <div id="esleituGabekoak" class="paketeak-list">
 
-        </div>
       </div>
+    </div>
+  </div>
 </body>
 
 </html>
 
 <script type="module">
-  import { datuakKargatu } from './js/paketeak.js';
-  datuakKargatu();
-  setInterval(datuakKargatu, 10000);
+  import { erakutsiBanatzenPaketeak } from "./js/paketeak.js";
 
+  import {jarriBanatzen, markatuEntregatuta} from "./js/dbActions.js";
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    updateHtml();
+    setInterval(updateHtml, 10000);
+  });
+
+  function updateHtml() {
+    erakutsiBanatzenPaketeak();
+  }
+
+  window.banatzenJarri = function (id) {
+  jarriBanatzen(id);
+  updateHtml();
+}
+
+  window.entregatutaMarkatu = function (id) {
+    markatuEntregatuta(id);
+    updateHtml();
+  }
 </script>

@@ -45,7 +45,6 @@ export class inzidentzia {
         xhttppaketeak.onload = function () {
             document.getElementById("inzidentziakCont").innerHTML = ''
 
-            console.log(this.response)
             self.datua = JSON.parse(this.response)
 
             self.datua.forEach((inzidentzia) => {

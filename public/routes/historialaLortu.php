@@ -1,0 +1,1 @@
+<?php require_once '../kontrolatzaileak/HistorialaKontrolatzailea.php'; HistorialaKontrolatzailea::kargatuHistoriala();?>
