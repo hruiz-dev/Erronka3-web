@@ -4,6 +4,7 @@ body{
     justify-content: stretch;
     align-items: stretch;
     height: 100vh;
+    overflow: hidden;
 }
 
 .hasiera-cont{
@@ -12,6 +13,7 @@ body{
   justify-content: stretch;
   align-items: stretch;
   flex-grow: 1;
+  overflow: auto;
 }
 
 .hasiera-cont-stats{
@@ -43,7 +45,7 @@ body{
   display: flex;
   flex-direction: column;
   padding-inline: 5vw;
-  max-height: 50vh;
+  max-height: 70vh;
 }
 
 .paketeak-list{
@@ -52,7 +54,7 @@ body{
   justify-content: stretch;
   overflow: auto;
   padding-inline: .3vw;
-  max-height: 60vh;
+  max-height: 70vh;
 }
 
 .paketeak-list::-webkit-scrollbar {
@@ -104,22 +106,108 @@ body{
   flex-direction: column-reverse;
 }
 
-
-
 .no-scroll{
   overflow: hidden;
 }
 
 .inzidentzia-show-cont{
   padding: 20px;
+  flex-grow: 1;
 }
 /* Inzidentziak estiloa */
 .list-group-item.list-group-item-action.py-3.lh-sm:hover {
   background-color: #408cff;
 }
 
+.sidebar{
+  width: 250px;
+}
+
+.inzidentziak-cont{
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.inzidentziak-list{
+  width: 300px;
+  overflow: auto;
+}
+
 @media (max-width: 768px){
-  .sidebar{
+  .nav-item-span{
     display: none;
+  }
+
+  .sidebar-title{
+    display: none;
+  }
+
+  .sidebar-user-name{
+    display: none;
+  }
+
+  .sidebar{
+    width: 80px;
+  }
+
+  .hasiera-cont-stats-ind{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .hasiera-cont{
+    max-height: fit-content;
+  }
+
+  .paketeak-cont{
+    max-height: 100vh;
+  }
+
+  .paketeak-ind{
+    
+  }
+  
+  .paketeak-ind-top{
+    
+  }
+  
+  .paketeak-ind-top-left{
+    font-size: 15px;
+  }
+  
+  .paketeak-ind-top-right{
+    font-size: 10px;
+  }
+  
+  .paketeak-ind-center{
+    
+  }
+  
+  .paketeak-ind-center-left{
+    font-size: 10px;
+  }
+  
+  .paketeak-ind-center-center{
+    
+  }
+
+  .paketeak-ind-center-center .btn{
+    font-size: 10px;
+  }
+
+  .inzidentziak-cont{
+    flex-direction: column-reverse;
+  }
+
+  .inzidentziak-list{
+    width: 100%;
+    overflow: auto;
+  }
+
+  .login-cont{
+    width: 90%;
   }
 }

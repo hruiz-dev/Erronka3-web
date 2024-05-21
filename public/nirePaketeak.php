@@ -43,14 +43,14 @@ $banatzailea = $sesioa->lortuBanatzailea();
       </div>
       <br>
     </div>
-    <div class="hasiera-cont" style="margin-top: 40px">
-      <div class="paketeak-cont">
-        <h2>Banatzen hari naizen paketeak</h2>
-        <hr>
-        <div id="esleituGabekoak" class="paketeak-list">
+    <div class="paketeak-cont">
+      <h2>Banatzen hari naizen paketeak</h2>
+      <hr>
+      <div id="esleituGabekoak" class="paketeak-list">
 
-        </div>
       </div>
+    </div>
+  </div>
 </body>
 
 </html>

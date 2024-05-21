@@ -28,20 +28,20 @@ if ($sesioa->lortuBanatzailea() == null) {
 
 <body class="no-scroll">
   <?php echo sidebar("inzidentziak.php"); ?>
-  <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary"
-    style="width: 380px; overflow:auto">
-    <a href="#"
-      class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
-      <span class="fs-5 fw-semibold">Inzidentziak</span>
-    </a>
-    <div id="inzidentziakCont">
+  <div class="inzidentziak-cont">
+    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary inzidentziak-list">
+      <a href="#"
+        class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+        <span class="fs-5 fw-semibold">Inzidentziak</span>
+      </a>
+      <div id="inzidentziakCont">
 
+      </div>
     </div>
-  </div>
-  </div>
-  <div class="inzidentzia-show-cont" id="inzidentziaShowCont">
-    <h2 id="inzidentziaShowContTitle">List group item heading</h2>
-    <span id="inzidentziaShowContInform">Some placeholder content in a paragraph below the heading and date.</span>
+    <div class="inzidentzia-show-cont" id="inzidentziaShowCont">
+      <h2 id="inzidentziaShowContTitle">List group item heading</h2>
+      <span id="inzidentziaShowContInform">Some placeholder content in a paragraph below the heading and date.</span>
+    </div>
   </div>
 </body>
 
