@@ -169,4 +169,11 @@ class dbKonexioa
     {
         $this->conn->close();
     }
+
+    public function lortuBanatzailearenHistoriala($banatzaileaId)
+    {
+        $sql = "SELECT * FROM `Pakete_Historiala` WHERE `Banatzailea_id` = '$banatzaileaId';";
+        return mysqli_fetch_all($this->conn->query($sql), MYSQLI_ASSOC);
+
+    }
 }
