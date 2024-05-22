@@ -22,4 +22,15 @@ class InzidentziakKontrolatzailea{
 
     }
 
+    public static function sortuInzidentzia(){
+        $paketeaId= $_POST['inputPaketea'];
+        $izenburua= $_POST['inputIzenburua'];
+        $azalpena= $_POST['inputAzalpena'];
+        
+        $konexioa = new dbKonexioa();
+        $konexioa->sortuInzidentzia($paketeaId, $izenburua, $azalpena);
+
+        header("Location: ../inzidentziak.php"); 
+    }
+
 }
