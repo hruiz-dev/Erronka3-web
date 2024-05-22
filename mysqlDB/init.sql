@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: mysql
--- Tiempo de generación: 22-05-2024 a las 11:14:05
--- Versión del servidor: 8.3.0
+-- Tiempo de generación: 22-05-2024 a las 12:02:08
+-- Versión del servidor: 8.4.0
 -- Versión de PHP: 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -42,7 +42,7 @@ CREATE TABLE `Banatzailea` (
 --
 
 INSERT INTO `Banatzailea` (`id`, `izena`, `abizena`, `pasahitza`, `erabiltzailea`, `entregak`, `berandu_entregatuta`) VALUES
-(1, 'Patxi', 'Bishell', 'tnaii61b', 'dbishell0', 66, 80),
+(1, 'Dewain', 'Bishell', 'tnaii61b', 'dbishell0', 66, 80),
 (2, 'Erma', 'Ariss', 'lfysbj4g', 'eariss1', 30, 24),
 (3, 'Jeth', 'Tackell', 'nman06i8', 'jtackell2', 69, 82),
 (4, 'Ardath', 'Hupe', 'li2x8r25', 'ahupe3', 80, 86),
@@ -50,7 +50,7 @@ INSERT INTO `Banatzailea` (`id`, `izena`, `abizena`, `pasahitza`, `erabiltzailea
 (6, 'Marcille', 'Tschursch', 'l9jjmzwv', 'mtschursch5', 17, 99),
 (7, 'Therine', 'Aslet', 'zefls5bt', 'taslet6', 60, 82),
 (8, 'Horacio', 'Mapstone', '18drgsy5', 'hmapstone7', 32, 11),
-(9, 'Zacharias', 'Lundie', 'o45v4jji', 'zlundie8', 40, 18),
+(9, 'Zachariasa', 'Lundie', 'o45v4jji', 'zlundie8', 40, 18),
 (10, 'Harley', 'Rowbotham', 'd5ndgoq9', 'hrowbotham9', 52, 24),
 (11, 'Christie', 'Corish', '12up0tai', 'ccorisha', 10, 47),
 (12, 'Budd', 'Elan', 'j3caqdva', 'belanb', 75, 2),
@@ -141,9 +141,7 @@ INSERT INTO `Banatzailea` (`id`, `izena`, `abizena`, `pasahitza`, `erabiltzailea
 (97, 'Noami', 'Bolsteridge', '2lm228o8', 'nbolsteridge2o', 51, 44),
 (98, 'Rogers', 'Levick', 'dpsfb9e7', 'rlevick2p', 25, 92),
 (99, 'Rahel', 'Drinkale', 'siylqqam', 'rdrinkale2q', 32, 81),
-(100, 'Oona', 'Tuminelli', 'qid7nsaa', 'otuminelli2r', 89, 88),
-(102, 'Manolo', 'Kabezabolo', 'Patxi1234', 'MBolo', 40, 2),
-(104, 'Elora', 'Seebert', '9l66z70k', 'eseeberte', 98, 33);
+(100, 'Oona', 'Tuminelli', 'qid7nsaa', 'otuminelli2r', 89, 88);
 
 -- --------------------------------------------------------
 
@@ -169,34 +167,40 @@ CREATE TABLE `erabiltzailea` (
 
 CREATE TABLE `Inzidenzia` (
   `inzidenzia_kodea` int NOT NULL,
-  `informazioa` varchar(200) NOT NULL
+  `izenburua` varchar(200) NOT NULL,
+  `informazioa` varchar(200) NOT NULL,
+  `momentua` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Volcado de datos para la tabla `Inzidenzia`
 --
 
-INSERT INTO `Inzidenzia` (`inzidenzia_kodea`, `informazioa`) VALUES
-(1, 'Merops nubicus'),
-(2, 'Salvadora hexalepis'),
-(3, 'Colobus guerza'),
-(4, 'Lophoaetus occipitalis'),
-(5, 'Himantopus himantopus'),
-(6, 'Funambulus pennati'),
-(7, 'Cercatetus concinnus'),
-(8, 'Bubalornis niger'),
-(9, 'Picoides pubescens'),
-(10, 'Sula dactylatra'),
-(11, 'Pseudocheirus peregrinus'),
-(12, 'Cervus canadensis'),
-(13, 'Semnopithecus entellus'),
-(14, 'Vanellus chilensis'),
-(15, 'Plegadis ridgwayi'),
-(16, 'Felis concolor'),
-(17, 'Rhea americana'),
-(18, 'Cervus duvauceli'),
-(19, 'Pseudocheirus peregrinus'),
-(20, 'Dasyprocta leporina');
+INSERT INTO `Inzidenzia` (`inzidenzia_kodea`, `izenburua`, `informazioa`, `momentua`) VALUES
+(1, '', 'Merops nubicus', '2024-05-22 11:11:13'),
+(2, '', 'Salvadora hexalepis', '2024-05-22 11:11:13'),
+(3, '', 'Colobus guerza', '2024-05-22 11:11:13'),
+(4, '', 'Lophoaetus occipitalis', '2024-05-22 11:11:13'),
+(5, '', 'Himantopus himantopus', '2024-05-22 11:11:13'),
+(6, '', 'Funambulus pennati', '2024-05-22 11:11:13'),
+(7, '', 'Cercatetus concinnus', '2024-05-22 11:11:13'),
+(8, '', 'Bubalornis niger', '2024-05-22 11:11:13'),
+(9, '', 'Picoides pubescens', '2024-05-22 11:11:13'),
+(10, '', 'Sula dactylatra', '2024-05-22 11:11:13'),
+(11, '', 'Pseudocheirus peregrinus', '2024-05-22 11:11:13'),
+(12, '', 'Cervus canadensis', '2024-05-22 11:11:13'),
+(13, 'Prueba', 'Semnopithecus entellus', '2024-05-22 11:11:13'),
+(14, '', 'Vanellus chilensis', '2024-05-22 11:11:13'),
+(15, '', 'Plegadis ridgwayi', '2024-05-22 11:11:13'),
+(16, '', 'Felis concolor', '2024-05-22 11:11:13'),
+(17, '', 'Rhea americana', '2024-05-22 11:11:13'),
+(18, '', 'Cervus duvauceli', '2024-05-22 11:11:13'),
+(19, '', 'Pseudocheirus peregrinus', '2024-05-22 11:11:13'),
+(20, '', 'Dasyprocta leporina', '2024-05-22 11:11:13'),
+(21, 'Prueba', 'Prueba', '2024-05-22 11:11:13'),
+(22, 'Prueba 2', 'Prueba 2 fsadñlkfj sfh kdsajfh dsafsa df dsf dsfa dsfdsa fdsaf dsf dshflhldsajkfhsdjlkf alksjhfskdljhf alkdsjhf lkdsj fh', '2024-05-22 11:17:08'),
+(23, 'Froga', 'Frogarako inzidentzia', '2024-05-22 11:32:05'),
+(24, 'Froga', 'Frogarako inzidentzia', '2024-05-22 11:32:15');
 
 -- --------------------------------------------------------
 
@@ -221,15 +225,12 @@ CREATE TABLE `Paketea` (
 --
 
 INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatzen`, `Banatzailea_id`) VALUES
-(1, '2024-01-23', 'Doll Maddyson', '854x318', 0, '6099 Crescent Oaks Trail', '62 Dunning Park', 1, 1),
-(2, '2023-12-05', 'Arther McKim', '569x363', 0, '2282 Armistice Park', '30508 Sommers Avenue', 1, 1),
 (3, '2023-08-07', 'Cord Moysey', '800x684', 0, '14316 Helena Place', '6 Summer Ridge Center', 0, 71),
 (4, '2024-04-02', 'Sheffield Livingston', '780x317', 0, '36490 Forster Circle', '04818 Elmside Way', 0, 65),
 (5, '2023-05-24', 'Jeanine Skpsey', '11x170', 0, '68 Linden Junction', '2544 Daystar Place', 0, 14),
 (6, '2023-09-14', 'Marylee Binnall', '253x887', 0, '4693 Drewry Court', '8 Arizona Center', 0, 4),
 (7, '2023-11-24', 'Randolf Paddy', '306x982', 0, '0037 Kipling Drive', '704 Warbler Plaza', 0, 76),
-(8, '2023-09-24', 'Jeannine Whichelow', '269x407', 0, '86 Pine View Center', '566 Tennyson Terrace', 0, NULL),
-(9, '2024-03-19', 'Sam Dipple', '497x678', 0, '32707 Butternut Point', '5 Clove Avenue', 0, NULL),
+(9, '2024-03-19', 'Sam Dipple', '497x678', 0, '32707 Butternut Point', '5 Clove Avenue', 1, 1),
 (10, '2023-06-14', 'Blanche Lambole', '483x56', 0, '7437 Kings Parkway', '21829 Prairie Rose Court', 0, NULL),
 (11, '2024-01-15', 'Derrik Jiras', '752x504', 0, '96181 Prairieview Circle', '78635 Clarendon Avenue', 0, NULL),
 (12, '2023-07-09', 'Winfred Dicke', '168x505', 0, '827 Reinke Trail', '0 Warbler Point', 0, NULL),
@@ -371,7 +372,7 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (148, '2023-11-02', 'Sabina MacAleese', '650x450', 0, '22 Golden Leaf Crossing', '22 Washington Road', 0, 28),
 (149, '2023-11-27', 'Cherri Higgen', '600x997', 0, '333 Meadow Ridge Hill', '31 Independence Plaza', 0, 53),
 (150, '2023-11-29', 'Zeb Asbury', '617x289', 0, '7 Hoepker Point', '12 Troy Drive', 0, NULL),
-(151, '2024-05-13', 'Olenka Light', '776x869', 0, '0964 Elka Place', '1 Di Loreto Way', 0, NULL),
+(151, '2024-05-23', 'Olenka Light', '776x869', 0, '0964 Elka Place', '1 Di Loreto Way', 0, NULL),
 (152, '2023-05-19', 'Fitz Hastings', '44x263', 0, '83 Evergreen Plaza', '46 Spenser Trail', 0, NULL),
 (153, '2024-04-18', 'Netti Murdy', '826x654', 0, '4895 Bellgrove Court', '686 Bashford Alley', 0, NULL),
 (154, '2023-08-24', 'Reid MacCaffrey', '56x754', 0, '67 Lawn Junction', '0 Westend Court', 0, 27),
@@ -401,7 +402,7 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (178, '2023-08-29', 'Reinald Weald', '877x407', 0, '50477 Bobwhite Parkway', '4105 Dawn Alley', 0, 98),
 (179, '2023-12-05', 'Charmaine Molloy', '622x414', 0, '1551 Morningstar Drive', '02 Sugar Point', 0, 2),
 (180, '2024-02-27', 'Mortie McEvoy', '605x144', 0, '8548 Park Meadow Circle', '257 Pennsylvania Pass', 0, 78),
-(181, '2024-05-11', 'Linnet Griffey', '256x649', 0, '5 Summerview Crossing', '5832 Spohn Point', 0, 40),
+(181, '2024-05-21', 'Linnet Griffey', '256x649', 0, '5 Summerview Crossing', '5832 Spohn Point', 1, 40),
 (182, '2024-03-23', 'Giraldo Sewell', '838x215', 0, '19 Ridge Oak Point', '35990 Eagle Crest Trail', 0, NULL),
 (183, '2023-10-12', 'Nancie Demschke', '395x813', 0, '5 Gateway Court', '8660 Oakridge Road', 0, NULL),
 (184, '2023-05-18', 'Branden Sisley', '131x383', 0, '53298 Hermina Circle', '4609 Karstens Road', 0, NULL),
@@ -453,7 +454,7 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (230, '2023-12-19', 'Rudolfo Phlippi', '322x112', 0, '86 Buhler Circle', '85 Evergreen Circle', 0, 47),
 (231, '2023-05-17', 'Amelie Cressingham', '533x633', 0, '324 Warrior Circle', '04 Lyons Parkway', 0, NULL),
 (232, '2023-05-22', 'Darnall Quinnelly', '640x648', 0, '8739 Porter Center', '84457 Glacier Hill Street', 0, NULL),
-(233, '2024-05-13', 'Delano Entres', '680x175', 0, '2 Sloan Terrace', '6 Toban Center', 0, NULL),
+(233, '2024-05-23', 'Delano Entres', '680x175', 0, '2 Sloan Terrace', '6 Toban Center', 0, NULL),
 (234, '2023-10-02', 'Angela Rickson', '875x893', 0, '3 Forest Run Crossing', '6 Larry Junction', 0, NULL),
 (235, '2023-09-24', 'Sharity Isaksson', '485x881', 0, '986 Straubel Plaza', '2 Northfield Place', 0, 45),
 (236, '2023-10-28', 'Allene Romaines', '618x373', 0, '377 Jenna Drive', '6 Schurz Avenue', 0, 49),
@@ -469,7 +470,6 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (246, '2023-12-23', 'Bev Amoss', '544x416', 0, '1 Blue Bill Park Way', '2815 Cascade Court', 0, NULL),
 (247, '2024-01-21', 'Eartha Mousby', '147x542', 0, '84169 Grim Place', '9244 Farwell Road', 0, 32),
 (248, '2023-11-02', 'Jourdain Calles', '198x167', 0, '52 Old Shore Terrace', '2431 Anzinger Trail', 0, 63),
-(249, '2024-04-17', 'Marshal Quaintance', '377x488', 0, '83 Caliangt Hill', '51532 Graedel Trail', 0, 1),
 (250, '2023-07-09', 'Ingram Charlo', '13x31', 0, '263 Utah Circle', '13406 New Castle Crossing', 0, 5),
 (251, '2023-09-23', 'Etta Surgeon', '847x930', 0, '67 Buell Crossing', '7114 Northview Avenue', 0, NULL),
 (252, '2023-07-08', 'Edee Cockshtt', '825x885', 0, '9 Almo Avenue', '0 Pearson Street', 0, 8),
@@ -698,7 +698,7 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (476, '2023-05-17', 'Karlis Kornilyev', '962x477', 0, '78495 Steensland Alley', '00015 Rieder Alley', 0, NULL),
 (477, '2024-03-22', 'Vanny Rewan', '925x142', 0, '4 Northwestern Trail', '0038 Ludington Circle', 0, 81),
 (478, '2023-07-31', 'Prissie Silvermann', '766x128', 0, '12 Sutherland Point', '12 Dayton Point', 0, NULL),
-(479, '2024-05-14', 'Alyson Deuss', '870x554', 0, '554 Clove Plaza', '9 Pierstorff Junction', 0, NULL),
+(479, '2024-05-24', 'Alyson Deuss', '870x554', 0, '554 Clove Plaza', '9 Pierstorff Junction', 0, NULL),
 (480, '2023-07-12', 'Chalmers Skittrell', '349x70', 0, '81 Northwestern Parkway', '67215 Service Junction', 0, 73),
 (481, '2023-08-28', 'Tades Buchanan', '276x66', 0, '6 Kedzie Hill', '1680 Hauk Point', 0, 17),
 (482, '2024-05-06', 'Leyla Currier', '969x716', 0, '270 Sunbrook Circle', '6723 Bay Circle', 0, 26),
@@ -708,12 +708,12 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (486, '2023-08-18', 'Leona Jimpson', '637x92', 0, '942 Corry Plaza', '20291 Dwight Hill', 0, 9),
 (487, '2023-09-10', 'Swen Giral', '340x828', 0, '9805 Manley Street', '803 Stephen Parkway', 0, NULL),
 (488, '2024-03-07', 'Delinda Falloon', '69x172', 0, '86726 Bayside Circle', '20 Rutledge Park', 0, 2),
-(489, '2024-01-29', 'Sean Batters', '128x696', 0, '6209 Manufacturers Terrace', '05384 Mcguire Park', 0, NULL);
-INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatzen`, `Banatzailea_id`) VALUES
+(489, '2024-01-29', 'Sean Batters', '128x696', 0, '6209 Manufacturers Terrace', '05384 Mcguire Park', 0, NULL),
 (490, '2023-08-01', 'Thom Winram', '604x107', 0, '8103 Norway Maple Trail', '0461 Bultman Place', 0, NULL),
 (491, '2023-11-07', 'Fidelia Petrashkov', '959x183', 0, '2 Meadow Valley Avenue', '87231 Dixon Park', 0, 74),
 (492, '2023-08-27', 'Josh Absolem', '512x171', 0, '73030 Comanche Pass', '067 Northport Circle', 0, 62),
-(493, '2023-05-24', 'Maris Vogel', '92x695', 0, '55096 Cottonwood Pass', '8899 Monica Place', 0, 38),
+(493, '2023-05-24', 'Maris Vogel', '92x695', 0, '55096 Cottonwood Pass', '8899 Monica Place', 0, 38);
+INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatzen`, `Banatzailea_id`) VALUES
 (494, '2023-10-26', 'Tirrell Izakof', '979x638', 0, '0 East Parkway', '12 Duke Parkway', 0, 34),
 (495, '2023-12-03', 'Dosi Dreher', '550x965', 0, '1 6th Crossing', '07 Walton Park', 0, 48),
 (496, '2023-05-24', 'Brooks Rohlf', '484x522', 0, '6 Buhler Court', '63979 Schmedeman Lane', 0, NULL),
@@ -738,7 +738,11 @@ CREATE TABLE `paketeak_inzidenzia_eduki` (
 --
 
 INSERT INTO `paketeak_inzidenzia_eduki` (`inzidenzia`, `paketea`) VALUES
-(13, 1);
+(13, 1),
+(21, 9),
+(22, 9),
+(23, 9),
+(24, 9);
 
 -- --------------------------------------------------------
 
@@ -1264,7 +1268,11 @@ INSERT INTO `Pakete_Historiala` (`id`, `entrega_egin_beharreko_data`, `hartzaile
 (498, '2024-01-06', 'Michail Medd', '11x170', 1, '970 Florence Drive', '669 Mendota Place', '2021-01-06', 75),
 (499, '2023-10-07', 'Leonanie Bullough', '780x317', 0, '33 Lindbergh Crossing', '6575 Village Green Road', '2021-04-30', 19),
 (500, '2023-12-12', 'Tiebout Leedes', '569x363', 0, '12 Kennedy Pass', '2132 Iowa Circle', '2022-04-13', 68),
-(501, '2023-08-21', 'Reg Munkton', '714x93', 0, '77 David Place', '576 Muir Junction', '2024-05-20', 1);
+(501, '2024-01-23', 'Doll Maddyson', '854x318', 0, '6099 Crescent Oaks Trail', '62 Dunning Park', '2024-05-21', 1),
+(502, '2023-12-05', 'Arther McKim', '569x363', 0, '2282 Armistice Park', '30508 Sommers Avenue', '2024-05-22', 1),
+(503, '2024-04-17', 'Marshal Quaintance', '377x488', 0, '83 Caliangt Hill', '51532 Graedel Trail', '2024-05-22', 1),
+(504, '2023-08-21', 'Reg Munkton', '714x93', 0, '77 David Place', '576 Muir Junction', '2024-05-22', 1),
+(505, '2023-09-24', 'Jeannine Whichelow', '269x407', 0, '86 Pine View Center', '566 Tennyson Terrace', '2024-05-22', 1);
 
 --
 -- Índices para tablas volcadas
@@ -1318,7 +1326,7 @@ ALTER TABLE `Pakete_Historiala`
 -- AUTO_INCREMENT de la tabla `Banatzailea`
 --
 ALTER TABLE `Banatzailea`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT de la tabla `erabiltzailea`
@@ -1330,19 +1338,19 @@ ALTER TABLE `erabiltzailea`
 -- AUTO_INCREMENT de la tabla `Inzidenzia`
 --
 ALTER TABLE `Inzidenzia`
-  MODIFY `inzidenzia_kodea` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `inzidenzia_kodea` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `Paketea`
 --
 ALTER TABLE `Paketea`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
 
 --
 -- AUTO_INCREMENT de la tabla `Pakete_Historiala`
 --
 ALTER TABLE `Pakete_Historiala`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=506;
 
 --
 -- Restricciones para tablas volcadas
