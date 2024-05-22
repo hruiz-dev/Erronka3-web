@@ -42,7 +42,11 @@ export function sortuPaketaHtml() {
     datuakKargatu().then(array => {
         // Haz algo con el array
         array.forEach(element => {
-            html += sortuPaketea(element);
+            if (element.entregatzen == 1) {
+                html += sortuPaketea(element, "Entregatuta markatu");
+            } else {
+                html2 += sortuPaketea(element);
+            }
         });
         document.getElementById("paketeakCont").innerHTML = html;
     })

@@ -64,13 +64,22 @@ $banatzailea = $sesioa->lortuBanatzailea();
 <script type="module">
   import { sortuPaketaHtml } from "./js/paketeak.js";
   import { paketeDatuakKargatu } from "./js/paketeak.js";
-  import { jarriBanatzen } from "./js/dbActions.js";
+  import { jarriBanatzen, markatuEntregatuta } from "./js/dbActions.js";
 
-  jarriBanatzen("pakete1")
   document.addEventListener('DOMContentLoaded', (event) => {
     updateHtml();
     setInterval(updateHtml, 10000);
   });
+
+  window.banatzenJarri = function (id) {
+    jarriBanatzen(id);
+    updateHtml();
+  }
+
+  window.entregatutaMarkatu = function (id) {
+    markatuEntregatuta(id);
+    updateHtml();
+  }
 
   function updateHtml() {
     sortuPaketaHtml();
