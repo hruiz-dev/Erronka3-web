@@ -5,46 +5,49 @@ require_once "../modeloak/banatzailea.php";
 require_once "../modeloak/paketea.php";
 require_once "dbKonexioa.php";
 
+// Sesioaren instantzia lortzen du
 $sesioa = Sesioa::getInstantzia();
-  $banatzailea = $sesioa->lortuBanatzailea();
+$banatzailea = $sesioa->lortuBanatzailea();
 
-  $konexioa = new dbKonexioa();
-  $paketeak = $konexioa->lortuBanatzailearenPaketeak($banatzailea->id);
-  $paketeakJson = [];
-  
-  //if honek get patizio bat iristen bazaio orrialde honi datuak banatzailearen paketen datuak json moduan pasatzen ditu
+// Datu basearekin konexioa sortzen du
+$konexioa = new dbKonexioa();
+$paketeak = $konexioa->lortuBanatzailearenPaketeak($banatzailea->id);
+$paketeakJson = [];
+
+// if honek GET petizio bat iristen bazaio orrialde honi datuak banatzailearen paketen datuak JSON moduan pasatzen ditu
 if (isset($_GET["paketeak"])) {
-  while ($paketeaData = $paketeak->fetch_assoc()) {
-  
-    $paketea = new Paketea($paketeaData['id'], 
-    $paketeaData['entrega_egin_beharreko_data'], 
-    $paketeaData['hartzailea'], 
-    $paketeaData['dimensioak'], 
-    $paketeaData['hauskorra'], 
-    $paketeaData['helburua'], 
-    $paketeaData['jatorria'], 
-    $paketeaData['entregatzen'],
-    $paketeaData['Banatzailea_id']);
-  
-    array_push($paketeakJson,$paketea);
-  }
+    while ($paketeaData = $paketeak->fetch_assoc()) {
+        $paketea = new Paketea(
+            $paketeaData['id'],
+            $paketeaData['entrega_egin_beharreko_data'],
+            $paketeaData['hartzailea'],
+            $paketeaData['dimensioak'],
+            $paketeaData['hauskorra'],
+            $paketeaData['helburua'],
+            $paketeaData['jatorria'],
+            $paketeaData['entregatzen'],
+            $paketeaData['Banatzailea_id']
+        );
+        array_push($paketeakJson, $paketea);
+    }
 
-echo json_encode($paketeakJson);
+    echo json_encode($paketeakJson);
 }
+
 // banatzailearen datuak aktualizatzeko metodoa
 if (isset($_GET["datuak"])) {
-  $entregatubearrekoak = 0;
-  while ($paketeaData = $paketeak->fetch_assoc()) {
-    $entregatubearrekoak++;
-  }
+    $entregatubearrekoak = 0;
+    while ($paketeaData = $paketeak->fetch_assoc()) {
+        $entregatubearrekoak++;
+    }
 
-  $banatzaileaData = $konexioa->lortuBanatzailea($banatzailea->id);
-  $banatzailea = new Banatzailea($banatzaileaData);
-  $sesioa->gordeBanatzailea($banatzailea);
+    $banatzaileaData = $konexioa->lortuBanatzailea($banatzailea->id);
+    $banatzailea = new Banatzailea($banatzaileaData);
+    $sesioa->gordeBanatzailea($banatzailea);
 
-  $inzidentziak = $konexioa->lortuPaketenInzidentziak($banatzailea->id);
+    $inzidentziak = $konexioa->lortuPaketenInzidentziak($banatzailea->id);
 
-  $json = array($banatzailea->entregak, $entregatubearrekoak, $inzidentziak, $banatzailea->beranduEntregak);
-  echo json_encode($json);
+    $json = array($banatzailea->entregak, $entregatubearrekoak, $inzidentziak, $banatzailea->beranduEntregak);
+    echo json_encode($json);
 }
-
+?>

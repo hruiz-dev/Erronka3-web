@@ -7,11 +7,13 @@ class dbKonexioa
     private $host = "mysql";
     private $db = "pakAG";
     private $user = "root";
-
     private $pass = "root";
-
     private $conn;
 
+    /**
+     * dbKonexioa eraikitzailea.
+     * Datu basearekin konexioa hasieratzen du.
+     */
     public function __construct()
     {
         $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->db);
@@ -21,15 +23,14 @@ class dbKonexioa
     }
 
     /**
-     * funtzio honek datubaseari kontsulta bat egiten dio pasatutako erabiltzailea eta pasahitzarekin, 
-     * esistitzen bada auen datak itzuilo ditu besteal null balorea
-     * @param $erabiltzailea erabiltzailearen izena
-     * @param $pasahitza erabiltzailearen pasahitza
-     * @return banatzailea|null banatzailea aurkitu bada, banatzailea itzuliko du, bestela null
+     * Emandako erabiltzaile eta pasahitzarekin login kontsulta bat exekutatzen du.
+     * 
+     * @param string $erabiltzailea Erabiltzailearen izena.
+     * @param string $pasahitza Erabiltzailearen pasahitza.
+     * @return array|null Banatzailearen datuak itzultzen ditu aurkituz gero, bestela null.
      */
     public function login($erabiltzailea, $pasahitza)
     {
-
         $erabiltzailea = $this->mysqlFormat($erabiltzailea);
         $pasahitza = $this->mysqlFormat($pasahitza);
 
@@ -43,8 +44,10 @@ class dbKonexioa
     }
 
     /**
-     * banatzailearen id-a erabiliz, banatzailearen datuak itzultzen ditu
-     * @param mixed $banatzaileaId banatzailearen id-a
+     * Banatzailearen datuak bere ID bidez lortzen ditu.
+     * 
+     * @param mixed $banatzaileaId Banatzailearen IDa.
+     * @return array|null Banatzailearen datuak itzultzen ditu aurkituz gero, bestela null.
      */
     public function lortuBanatzailea($banatzaileaId)
     {
@@ -58,59 +61,65 @@ class dbKonexioa
     }
 
     /**
-     * Funtzio honek datubasetik erabiltzaileari dagokion paketeak itzultzen ditu
-     * @param mixed $banatzaileaId banatzailearen id-a
+     * Emandako banatzailearen paketeak lortzen ditu.
+     * 
+     * @param mixed $banatzaileaId Banatzailearen IDa.
+     * @return mysqli_result Paketeak dituen kontsultaren emaitza.
      */
     public function lortuBanatzailearenPaketeak($banatzaileaId)
     {
-        $sql = "SELECT * FROM `Paketea`WHERE `Banatzailea_id` = '$banatzaileaId';";
+        $sql = "SELECT * FROM `Paketea` WHERE `Banatzailea_id` = '$banatzaileaId';";
         return $this->conn->query($sql);
-
     }
 
     /**
-     * Funtzio honek datubasetitk banatzaile honek banatu duen paketeen inzidentziak itzultzen ditu
-     * @param mixed $banatzaileaId banatzailearen id-a
+     * Emandako banatzaileak banatu dituen paketeen inzidentzien kopurua itzultzen du.
+     * 
+     * @param mixed $banatzaileaId Banatzailearen IDa.
+     * @return int Inzidentzien kopurua.
      */
     public function lortuPaketenInzidentziak($banatzaileaId)
     {
         $sql = "SELECT COUNT(*)
-        FROM `Paketea` 
-        WHERE `Paketea`.`Banatzailea_id` = '$banatzaileaId'
-        AND EXISTS (
-            SELECT 1 
-            FROM `paketeak_inzidenzia_eduki` 
-            WHERE `paketeak_inzidenzia_eduki`.`paketea` = `Paketea`.`id`
-        );";
+                FROM `Paketea` 
+                WHERE `Paketea`.`Banatzailea_id` = '$banatzaileaId'
+                AND EXISTS (
+                    SELECT 1 
+                    FROM `paketeak_inzidenzia_eduki` 
+                    WHERE `paketeak_inzidenzia_eduki`.`paketea` = `Paketea`.`id`
+                );";
 
         $result = $this->conn->query($sql);
         $row = $result->fetch_row();
-        return $row[0]; // Devuelve el número de filas
-
+        return $row[0]; // Itzultzen du lerro kopurua
     }
 
     /**
-     * Funtzio honek banatzailea eduki dituen inzidentzia guztiak itzultzen ditu
+     * Emandako banatzailearekin erlazionatutako inzidentzia guztiak itzultzen ditu.
+     * 
+     * @param mixed $banatzaileaId Banatzailearen IDa.
+     * @return array Inzidentzien datuak.
      */
     public function lortuBanatzailearenInzidentziak($banatzaileaId)
     {
         $sql = "SELECT * FROM Inzidenzia 
-        WHERE inzidenzia_kodea IN (
-            SELECT inzidenzia FROM paketeak_inzidenzia_eduki 
-            WHERE paketea IN (
-                SELECT id FROM Pakete_Historiala 
-                WHERE Banatzailea_id = $banatzaileaId
-            )
-        );
-        ";
+                WHERE inzidenzia_kodea IN (
+                    SELECT inzidenzia FROM paketeak_inzidenzia_eduki 
+                    WHERE paketea IN (
+                        SELECT id FROM Pakete_Historiala 
+                        WHERE Banatzailea_id = $banatzaileaId
+                    )
+                );";
 
         $rows = mysqli_fetch_all($this->conn->query($sql), MYSQLI_ASSOC);
         return $rows;
-
     }
 
     /**
-     * funtzio honek mysql ijezioak saiesteko formatuan itzultzen du psatutako string-a
+     * SQL injekzioak saihesteko string bat ihes egiten du.
+     * 
+     * @param string $format Ihes egin behar den stringa.
+     * @return string Ihes egindako stringa.
      */
     function mysqlFormat($format): string
     {
@@ -118,8 +127,9 @@ class dbKonexioa
     }
 
     /**
-     * Funtzio honek paketea banatzen jartzen du bere id-a erabiliz
-     * @param mixed $id paketearen id-a
+     * Pakete bat entregatzen jartzen du bere IDa erabiliz.
+     * 
+     * @param mixed $id Paketearen IDa.
      */
     public function paketeaBanatzenJarri($id) {
         $sql = "UPDATE `Paketea` SET `entregatzen` = '1' WHERE `Paketea`.`id` = $id;";
@@ -127,8 +137,10 @@ class dbKonexioa
     }
 
     /**
-     * Funtzi honek paketea entregatuta jartzen du bere id-a erabiliz
-     * Lehenik datubasetik paketearen datuak eskuratzen ditu, gero pakete historian sartu eta azkenik paketa ezabatu
+     * Pakete bat entregatuta jartzen du bere IDa erabiliz.
+     * Paketea historialera mugitu eta aktiboen taulatik ezabatzen du.
+     * 
+     * @param mixed $id Paketearen IDa.
      */
     public function paketeaEntregatutaJarri($id) {
         $sql = "SELECT * FROM `Paketea` WHERE `id` = $id";
@@ -136,44 +148,53 @@ class dbKonexioa
         
         $response = $response->fetch_assoc();
         $paketea = new Paketea(
-        $response['id'], 
-        $response['entrega_egin_beharreko_data'], 
-        $response['hartzailea'], 
-        $response['dimensioak'], 
-        $response['hauskorra'], 
-        $response['helburua'], 
-        $response['jatorria'], 
-        $response['entregatzen'], 
-        $response['Banatzailea_id']);
-        
+            $response['id'], 
+            $response['entrega_egin_beharreko_data'], 
+            $response['hartzailea'], 
+            $response['dimensioak'], 
+            $response['hauskorra'], 
+            $response['helburua'], 
+            $response['jatorria'], 
+            $response['entregatzen'], 
+            $response['Banatzailea_id']
+        );
         
         $sql = "INSERT INTO `Pakete_Historiala` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, 
-        `hauskorra`, `helburua`, `jatorria`, `entregatze_data`, `Banatzailea_id`) 
-        VALUES (
-            NULL, '{$paketea->entragaEginBeharrekoData}',
-            '{$paketea->hartzailea}',
-            '{$paketea->dimensioak}',
-            '{$paketea->hauskorra}',
-            '{$paketea->helburua}',
-            '{$paketea->jatorria}',
-            NOW(),
-            '{$paketea->banatzaileaId}')";
-
+                `hauskorra`, `helburua`, `jatorria`, `entregatze_data`, `Banatzailea_id`) 
+                VALUES (
+                    NULL, '{$paketea->entragaEginBeharrekoData}',
+                    '{$paketea->hartzailea}',
+                    '{$paketea->dimensioak}',
+                    '{$paketea->hauskorra}',
+                    '{$paketea->helburua}',
+                    '{$paketea->jatorria}',
+                    NOW(),
+                    '{$paketea->banatzaileaId}'
+                )";
         $this->conn->query($sql);
-            
+        
         $sql = "DELETE FROM `Paketea` WHERE `id` = $id";
         $this->conn->query($sql);
     }
 
+    /**
+     * Objektua suntsitzean datu basearekin konexioa ixten du.
+     */
     public function __destruct()
     {
         $this->conn->close();
     }
 
+    /**
+     * Emandako banatzailearen entregen historial guztia lortzen du.
+     * 
+     * @param mixed $banatzaileaId Banatzailearen IDa.
+     * @return array Entrega-historialaren datuak.
+     */
     public function lortuBanatzailearenHistoriala($banatzaileaId)
     {
         $sql = "SELECT * FROM `Pakete_Historiala` WHERE `Banatzailea_id` = '$banatzaileaId';";
         return mysqli_fetch_all($this->conn->query($sql), MYSQLI_ASSOC);
-
     }
 }
+?>
