@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: mysql
--- Tiempo de generación: 20-05-2024 a las 07:11:59
+-- Tiempo de generación: 22-05-2024 a las 11:14:05
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.8
 
@@ -42,7 +42,7 @@ CREATE TABLE `Banatzailea` (
 --
 
 INSERT INTO `Banatzailea` (`id`, `izena`, `abizena`, `pasahitza`, `erabiltzailea`, `entregak`, `berandu_entregatuta`) VALUES
-(1, 'Dewain', 'Bishell', 'tnaii61b', 'dbishell0', 66, 80),
+(1, 'Patxi', 'Bishell', 'tnaii61b', 'dbishell0', 66, 80),
 (2, 'Erma', 'Ariss', 'lfysbj4g', 'eariss1', 30, 24),
 (3, 'Jeth', 'Tackell', 'nman06i8', 'jtackell2', 69, 82),
 (4, 'Ardath', 'Hupe', 'li2x8r25', 'ahupe3', 80, 86),
@@ -141,7 +141,25 @@ INSERT INTO `Banatzailea` (`id`, `izena`, `abizena`, `pasahitza`, `erabiltzailea
 (97, 'Noami', 'Bolsteridge', '2lm228o8', 'nbolsteridge2o', 51, 44),
 (98, 'Rogers', 'Levick', 'dpsfb9e7', 'rlevick2p', 25, 92),
 (99, 'Rahel', 'Drinkale', 'siylqqam', 'rdrinkale2q', 32, 81),
-(100, 'Oona', 'Tuminelli', 'qid7nsaa', 'otuminelli2r', 89, 88);
+(100, 'Oona', 'Tuminelli', 'qid7nsaa', 'otuminelli2r', 89, 88),
+(102, 'Manolo', 'Kabezabolo', 'Patxi1234', 'MBolo', 40, 2),
+(104, 'Elora', 'Seebert', '9l66z70k', 'eseeberte', 98, 33);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `erabiltzailea`
+--
+
+CREATE TABLE `erabiltzailea` (
+  `id` int NOT NULL,
+  `izena` varchar(100) DEFAULT NULL,
+  `abizena` varchar(100) DEFAULT NULL,
+  `na_zenbakia` varchar(100) DEFAULT NULL,
+  `erabiltzaile_izena` varchar(100) DEFAULT NULL,
+  `pasahitza` varchar(100) DEFAULT NULL,
+  `mota` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -203,8 +221,8 @@ CREATE TABLE `Paketea` (
 --
 
 INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatzen`, `Banatzailea_id`) VALUES
-(1, '2024-01-23', 'Doll Maddyson', '854x318', 0, '6099 Crescent Oaks Trail', '62 Dunning Park', 0, 1),
-(2, '2023-12-05', 'Arther McKim', '569x363', 0, '2282 Armistice Park', '30508 Sommers Avenue', 0, 1),
+(1, '2024-01-23', 'Doll Maddyson', '854x318', 0, '6099 Crescent Oaks Trail', '62 Dunning Park', 1, 1),
+(2, '2023-12-05', 'Arther McKim', '569x363', 0, '2282 Armistice Park', '30508 Sommers Avenue', 1, 1),
 (3, '2023-08-07', 'Cord Moysey', '800x684', 0, '14316 Helena Place', '6 Summer Ridge Center', 0, 71),
 (4, '2024-04-02', 'Sheffield Livingston', '780x317', 0, '36490 Forster Circle', '04818 Elmside Way', 0, 65),
 (5, '2023-05-24', 'Jeanine Skpsey', '11x170', 0, '68 Linden Junction', '2544 Daystar Place', 0, 14),
@@ -471,7 +489,6 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (266, '2024-03-24', 'Osbourn Partlett', '501x291', 0, '96 La Follette Park', '5 Killdeer Alley', 0, NULL),
 (267, '2023-10-25', 'Rena Micklewicz', '514x228', 0, '01203 Anzinger Drive', '00 Eliot Park', 0, 41),
 (268, '2024-03-12', 'Lydia Pittock', '74x876', 0, '585 Hanover Hill', '6020 Rowland Court', 0, NULL),
-(269, '2023-08-21', 'Reg Munkton', '714x93', 0, '77 David Place', '576 Muir Junction', 0, 1),
 (270, '2024-05-07', 'Bradley Keys', '395x235', 0, '221 Nancy Plaza', '01 Arizona Terrace', 0, 63),
 (271, '2023-05-21', 'Daisy Santus', '946x217', 0, '0 Schlimgen Hill', '192 Hovde Street', 0, NULL),
 (272, '2023-11-14', 'Monroe Tubbles', '199x879', 0, '347 Grim Plaza', '43 Crescent Oaks Road', 0, 95),
@@ -690,9 +707,9 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (485, '2024-02-26', 'Lloyd Crossby', '454x742', 0, '2 Mendota Street', '500 Arapahoe Terrace', 0, 71),
 (486, '2023-08-18', 'Leona Jimpson', '637x92', 0, '942 Corry Plaza', '20291 Dwight Hill', 0, 9),
 (487, '2023-09-10', 'Swen Giral', '340x828', 0, '9805 Manley Street', '803 Stephen Parkway', 0, NULL),
-(488, '2024-03-07', 'Delinda Falloon', '69x172', 0, '86726 Bayside Circle', '20 Rutledge Park', 0, 2);
+(488, '2024-03-07', 'Delinda Falloon', '69x172', 0, '86726 Bayside Circle', '20 Rutledge Park', 0, 2),
+(489, '2024-01-29', 'Sean Batters', '128x696', 0, '6209 Manufacturers Terrace', '05384 Mcguire Park', 0, NULL);
 INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatzen`, `Banatzailea_id`) VALUES
-(489, '2024-01-29', 'Sean Batters', '128x696', 0, '6209 Manufacturers Terrace', '05384 Mcguire Park', 0, NULL),
 (490, '2023-08-01', 'Thom Winram', '604x107', 0, '8103 Norway Maple Trail', '0461 Bultman Place', 0, NULL),
 (491, '2023-11-07', 'Fidelia Petrashkov', '959x183', 0, '2 Meadow Valley Avenue', '87231 Dixon Park', 0, 74),
 (492, '2023-08-27', 'Josh Absolem', '512x171', 0, '73030 Comanche Pass', '067 Northport Circle', 0, 62),
@@ -1246,7 +1263,8 @@ INSERT INTO `Pakete_Historiala` (`id`, `entrega_egin_beharreko_data`, `hartzaile
 (497, '2024-01-15', 'Glynn Dacca', '11x170', 0, '50 Thompson Street', '544 Shasta Road', '2024-03-12', 51),
 (498, '2024-01-06', 'Michail Medd', '11x170', 1, '970 Florence Drive', '669 Mendota Place', '2021-01-06', 75),
 (499, '2023-10-07', 'Leonanie Bullough', '780x317', 0, '33 Lindbergh Crossing', '6575 Village Green Road', '2021-04-30', 19),
-(500, '2023-12-12', 'Tiebout Leedes', '569x363', 0, '12 Kennedy Pass', '2132 Iowa Circle', '2022-04-13', 68);
+(500, '2023-12-12', 'Tiebout Leedes', '569x363', 0, '12 Kennedy Pass', '2132 Iowa Circle', '2022-04-13', 68),
+(501, '2023-08-21', 'Reg Munkton', '714x93', 0, '77 David Place', '576 Muir Junction', '2024-05-20', 1);
 
 --
 -- Índices para tablas volcadas
@@ -1256,6 +1274,12 @@ INSERT INTO `Pakete_Historiala` (`id`, `entrega_egin_beharreko_data`, `hartzaile
 -- Indices de la tabla `Banatzailea`
 --
 ALTER TABLE `Banatzailea`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `erabiltzailea`
+--
+ALTER TABLE `erabiltzailea`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1294,7 +1318,13 @@ ALTER TABLE `Pakete_Historiala`
 -- AUTO_INCREMENT de la tabla `Banatzailea`
 --
 ALTER TABLE `Banatzailea`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+
+--
+-- AUTO_INCREMENT de la tabla `erabiltzailea`
+--
+ALTER TABLE `erabiltzailea`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `Inzidenzia`
@@ -1306,13 +1336,13 @@ ALTER TABLE `Inzidenzia`
 -- AUTO_INCREMENT de la tabla `Paketea`
 --
 ALTER TABLE `Paketea`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
 
 --
 -- AUTO_INCREMENT de la tabla `Pakete_Historiala`
 --
 ALTER TABLE `Pakete_Historiala`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
 
 --
 -- Restricciones para tablas volcadas
