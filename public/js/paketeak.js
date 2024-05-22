@@ -40,12 +40,11 @@ export function paketeDatuakKargatu() {
 export function sortuPaketaHtml() {
     let html = "";
     datuakKargatu().then(array => {
-        // Haz algo con el array
         array.forEach(element => {
             if (element.entregatzen == 1) {
                 html += sortuPaketea(element, "Entregatuta markatu");
             } else {
-                html2 += sortuPaketea(element);
+                html += sortuPaketea(element);
             }
         });
         document.getElementById("paketeakCont").innerHTML = html;

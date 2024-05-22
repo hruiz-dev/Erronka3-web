@@ -8,6 +8,9 @@ require_once "kontrolatzaileak/sesioa.php";
 function sidebar($aktiboa) {
   $sesioa =  Sesioa::getInstantzia();
   $banatzailea = $sesioa->lortuBanatzailea();
+  if($banatzailea==null){
+    header("Location: index.php");
+  }
   $erabiltzailea = $banatzailea->izena . " " . $banatzailea->abizena;
 
 
@@ -46,11 +49,7 @@ function sidebar($aktiboa) {
             <div class="sidebar-user-name">$erabiltzailea</div>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Inzidentzia berria</a></li>
-            <li><a class="dropdown-item" href="#">Ezarpenak</a></li>
-            <li><a class="dropdown-item" href="#">Nire erabiltzailea</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="kontrolatzaileak/saioaItxi.php">Saioa itxi</a></li>
+            <li><a class="dropdown-item" href="kontrolatzaileak/logout.php">Saioa itxi</a></li>
           </ul>
         </div>
       </div>

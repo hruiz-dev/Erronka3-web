@@ -25,8 +25,12 @@ class Sesioa {
      * Funtzio honek sesioan gordetako banatailea itzultzen du
      */
     public function lortuBanatzailea() {
-        
-        return $_SESSION['banatzailea'];
+        if(isset($_SESSION['banatzailea'])){
+            return $_SESSION['banatzailea'];
+        }
+        else{
+            return null;
+        }
         
     }
 
