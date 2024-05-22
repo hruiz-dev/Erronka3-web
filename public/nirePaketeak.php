@@ -70,9 +70,9 @@ $banatzailea = $sesioa->lortuBanatzailea();
   }
 
   window.banatzenJarri = function (id) {
-  jarriBanatzen(id);
-  updateHtml();
-}
+    jarriBanatzen(id);
+    updateHtml();
+  }
 
   window.entregatutaMarkatu = function (id) {
     markatuEntregatuta(id);

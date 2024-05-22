@@ -1,9 +1,18 @@
 export class historiala {
 
     datua = [];
-
+    
 
     sortuLerroa(paketea) {
+
+        let estiloa = "";
+
+        if(paketea.entregatze_data>paketea.entrega_egin_beharreko_data){
+            estiloa=`style="color: red;" title="Berandu entregatua"`
+        }
+        else{
+            estiloa=" "
+        }
 
         return `
         <tr>
@@ -13,7 +22,7 @@ export class historiala {
             <td>${paketea.helburua}</td>
             <td>${paketea.jatorria}</td>
             <td>${paketea.entrega_egin_beharreko_data}</td>
-            <td>${paketea.entregatze_data}</td>
+            <td ${estiloa}>${paketea.entregatze_data}</td>
         </tr>
         `;
     }
