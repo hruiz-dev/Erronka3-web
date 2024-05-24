@@ -28,6 +28,8 @@ class dbKonexioa
      * @param string $erabiltzailea Erabiltzailearen izena.
      * @param string $pasahitza Erabiltzailearen pasahitza.
      * @return array|null Banatzailearen datuak itzultzen ditu aurkituz gero, bestela null.
+     * 
+     * Banatzailea taulako atributu guztiak erabiltzen ditu
      */
     public function login($erabiltzailea, $pasahitza)
     {
