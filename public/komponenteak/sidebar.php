@@ -49,6 +49,8 @@ function sidebar($aktiboa) {
             <div class="sidebar-user-name">$erabiltzailea</div>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+            <li><a class="dropdown-item" href="inzidentziaSortu.php">Inzidentzia berria</a></li>
+            <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="kontrolatzaileak/logout.php">Saioa itxi</a></li>
           </ul>
         </div>

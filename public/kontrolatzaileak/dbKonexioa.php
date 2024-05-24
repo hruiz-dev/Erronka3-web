@@ -102,14 +102,9 @@ class dbKonexioa
      */
     public function lortuBanatzailearenInzidentziak($banatzaileaId)
     {
-        $sql = "SELECT * FROM Inzidenzia 
-                WHERE inzidenzia_kodea IN (
-                    SELECT inzidenzia FROM paketeak_inzidenzia_eduki 
-                    WHERE paketea IN (
-                        SELECT id FROM Pakete_Historiala 
-                        WHERE Banatzailea_id = $banatzaileaId
-                    )
-                );";
+        $sql = "SELECT * FROM `Inzidenzia`
+        INNER JOIN paketeak_inzidenzia_eduki ON paketeak_inzidenzia_eduki.inzidenzia=Inzidenzia.inzidenzia_kodea
+        WHERE (paketeak_inzidenzia_eduki.paketea IN (SELECT id FROM Paketea WHERE Paketea.Banatzailea_id=$banatzaileaId)) OR  (paketeak_inzidenzia_eduki.paketea IN (SELECT id FROM Pakete_Historiala WHERE Pakete_Historiala.Banatzailea_id=$banatzaileaId));";
 
         $rows = mysqli_fetch_all($this->conn->query($sql), MYSQLI_ASSOC);
         return $rows;
@@ -195,6 +190,15 @@ class dbKonexioa
     {
         $sql = "SELECT * FROM `Pakete_Historiala` WHERE `Banatzailea_id` = '$banatzaileaId';";
         return mysqli_fetch_all($this->conn->query($sql), MYSQLI_ASSOC);
+    }
+
+    public function sortuInzidentzia($paketeaId, $izenburua, $azalpena){
+        $sql = "INSERT INTO `Inzidenzia`(`izenburua`, `informazioa`, `momentua`) VALUES ('$izenburua','$azalpena',NOW())";
+        $this->conn->query($sql);
+
+        $last_id = $this->conn->insert_id;
+        $sql = "INSERT INTO `paketeak_inzidenzia_eduki`(`inzidenzia`, `paketea`) VALUES ('$last_id','$paketeaId')";
+        $this->conn->query($sql);
     }
 }
 ?>

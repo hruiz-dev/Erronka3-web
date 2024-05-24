@@ -13,8 +13,8 @@ export class inzidentzia {
         return `
             <a href="#" onclick="window.inzidentziajs.inzidentziaIkusi(${inzidentzia.inzidenzia_kodea})" id="inzidentziaBlock${inzidentzia.inzidenzia_kodea}" class="list-group-item list-group-item-action py-3 px-3 lh-sm" aria-current="true">
                 <div class="d-flex w-100 align-items-center justify-content-between">
-                    <strong class="mb-1">${inzidentzia.inzidenzia_kodea}</strong>
-                    <small>${inzidentzia.entrega_egin_beharreko_data}</small>
+                    <strong class="mb-1">${inzidentzia.izenburua}</strong>
+                    <small>${inzidentzia.momentua}</small>
                 </div>
                 <div class="col-10 mb-1 small">${inzidentzia.informazioa}</div>
             </a>
@@ -27,7 +27,7 @@ export class inzidentzia {
      */
     inzidentziaIkusi(index) {
         const inzidezia = this.datua.find(inzidentzia => inzidentzia.inzidenzia_kodea == index)
-        document.getElementById("inzidentziaShowContTitle").innerHTML = inzidezia.inzidenzia_kodea
+        document.getElementById("inzidentziaShowContTitle").innerHTML = inzidezia.izenburua
         document.getElementById("inzidentziaShowContInform").innerHTML = inzidezia.informazioa
 
         if (this.lastindex != null) { document.getElementById(`inzidentziaBlock${this.lastindex}`).style.background = "rgb(248,249,250)" }
