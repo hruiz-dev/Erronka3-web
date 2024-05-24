@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: mysql
--- Tiempo de generación: 22-05-2024 a las 11:14:05
+-- Tiempo de generación: 24-05-2024 a las 10:05:46
 -- Versión del servidor: 8.3.0
 -- Versión de PHP: 8.2.8
 
@@ -145,6 +145,17 @@ INSERT INTO `Banatzailea` (`id`, `izena`, `abizena`, `pasahitza`, `erabiltzailea
 (102, 'Manolo', 'Kabezabolo', 'Patxi1234', 'MBolo', 40, 2),
 (104, 'Elora', 'Seebert', '9l66z70k', 'eseeberte', 98, 33);
 
+--
+-- Disparadores `Banatzailea`
+--
+DELIMITER $$
+CREATE TRIGGER `Banatzailea_BEFORE_DELETE` BEFORE DELETE ON `Banatzailea` FOR EACH ROW BEGIN
+    UPDATE `Paketea` SET `Banatzailea_id` = NULL WHERE `Banatzailea_id` = OLD.id;
+    UPDATE `Pakete_Historiala` SET `Banatzailea_id` = NULL WHERE `Banatzailea_id` = OLD.id;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -221,7 +232,7 @@ CREATE TABLE `Paketea` (
 --
 
 INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimensioak`, `hauskorra`, `helburua`, `jatorria`, `entregatzen`, `Banatzailea_id`) VALUES
-(1, '2024-01-23', 'Doll Maddyson', '854x318', 0, '6099 Crescent Oaks Trail', '62 Dunning Park', 1, 1),
+(1, '2024-01-23', 'Don Manuel', '854x318', 1, '6099 Crescent Oaks Trail', '62 Dunning Park', 1, 1),
 (2, '2023-12-05', 'Arther McKim', '569x363', 0, '2282 Armistice Park', '30508 Sommers Avenue', 1, 1),
 (3, '2023-08-07', 'Cord Moysey', '800x684', 0, '14316 Helena Place', '6 Summer Ridge Center', 0, 71),
 (4, '2024-04-02', 'Sheffield Livingston', '780x317', 0, '36490 Forster Circle', '04818 Elmside Way', 0, 65),
@@ -237,7 +248,7 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (14, '2023-11-23', 'Land Botten', '880x358', 0, '34742 Walton Junction', '72 Dawn Crossing', 0, NULL),
 (15, '2023-08-11', 'Shepperd Rosborough', '551x261', 0, '4574 Gateway Court', '9 Maywood Parkway', 0, 76),
 (16, '2024-03-27', 'Donella Dakers', '395x183', 0, '49 Mendota Circle', '1 Park Meadow Circle', 0, 50),
-(17, '2023-09-19', 'Paolina Gorce', '768x113', 0, '36934 Monterey Place', '14 Birchwood Terrace', 0, NULL),
+(17, '2023-09-19', 'Paolina Gorce', '768x113', 0, '36934 Monterey Place', '14 Birchwood Terrace', 0, 17),
 (18, '2023-06-21', 'Robinett Thomassin', '336x350', 0, '03 Di Loreto Point', '81 Fieldstone Park', 0, NULL),
 (19, '2023-11-15', 'Reba Tale', '50x679', 0, '165 Fairview Way', '6290 Anzinger Center', 0, NULL),
 (20, '2024-03-03', 'Mariska Hatter', '232x316', 0, '82025 Westport Parkway', '48842 Maywood Parkway', 0, NULL),
@@ -309,7 +320,7 @@ INSERT INTO `Paketea` (`id`, `entrega_egin_beharreko_data`, `hartzailea`, `dimen
 (86, '2023-09-25', 'Sebastien Beller', '244x849', 0, '4 Bartelt Road', '9161 Swallow Plaza', 0, NULL),
 (87, '2023-09-09', 'Noah Castillon', '345x566', 0, '92954 Warner Alley', '88 Little Fleur Lane', 0, 70),
 (88, '2024-05-03', 'Edin Whyler', '883x349', 0, '99 Monica Crossing', '90 Clemons Road', 0, 99),
-(89, '2024-01-14', 'Clarissa Urwin', '102x921', 0, '96 Cardinal Park', '82623 Butterfield Road', 0, 7),
+(89, '2024-01-14', 'Clarissa Urwin', '102x921', 1, '96 Cardinal Park', '82623 Butterfield Road', 0, 7),
 (90, '2024-04-08', 'Elsinore Clack', '181x838', 0, '46 Blue Bill Park Junction', '5552 Thompson Plaza', 0, NULL),
 (91, '2023-10-02', 'Collette Sale', '341x503', 0, '33 Barnett Junction', '058 Helena Junction', 0, 74),
 (92, '2023-07-10', 'Howey Cordelet', '935x377', 0, '17 Oriole Parkway', '47063 Village Green Road', 0, 56),
@@ -1336,7 +1347,7 @@ ALTER TABLE `Inzidenzia`
 -- AUTO_INCREMENT de la tabla `Paketea`
 --
 ALTER TABLE `Paketea`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=503;
 
 --
 -- AUTO_INCREMENT de la tabla `Pakete_Historiala`
