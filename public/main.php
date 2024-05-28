@@ -32,21 +32,21 @@ $banatzailea = $sesioa->lortuBanatzailea();
   <?php echo sidebar("main.php"); ?>
   <div class="hasiera-cont">
     <div class="hasiera-cont-stats">
-      <div class="hasiera-cont-stats-ind">
+      <div class="hasiera-cont-stats-ind" title="Banatutako paketeak">
         <div class="hasiera-cont-stats-ind-num" id="banatutako-paketeak"><i class="bi bi-box-seam"
-            style="color:rgb(181, 153, 119)"></i> 25</div>
+            style="color:rgb(181, 153, 119)"></i> 0</div>
       </div>
-      <div class="hasiera-cont-stats-ind">
+      <div class="hasiera-cont-stats-ind" title="Banatzen ari zaren paketeak">
         <div class="hasiera-cont-stats-ind-num" id="banatzen-paketeak"><i class="bi bi-play-fill"
-            style="color: rgb(130, 173, 113)"></i> 1</div>
+            style="color: rgb(130, 173, 113)"></i> 0</div>
       </div>
-      <div class="hasiera-cont-stats-ind">
+      <div class="hasiera-cont-stats-ind" title="Inzidentziak">
         <div class="hasiera-cont-stats-ind-num" id="inzidentziak"><i class="bi bi-exclamation-triangle"
-            style="color: rgb(173, 113, 113)"></i> 3</div>
+            style="color: rgb(173, 113, 113)"></i> 0</div>
       </div>
-      <div class="hasiera-cont-stats-ind">
+      <div class="hasiera-cont-stats-ind" title="Berandu entregatutako paketeak">
         <div class="hasiera-cont-stats-ind-num" id="berandu-entregatutakoak"><i class="bi bi-clock-history"
-            style="color:rgb(221, 211, 120)"></i> 8</div>
+            style="color:rgb(221, 211, 120)"></i> 0</div>
       </div>
     </div>
     <div class="paketeak-cont">
